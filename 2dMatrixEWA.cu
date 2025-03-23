@@ -65,4 +65,4 @@ int main(){
 	cudaFree(d_b);
 	cudaFree(d_c);
 }
-// Not Ready yet
+
