@@ -2,7 +2,7 @@
 #include <cuda_runtime.h>
 
 __global__ void matrixmultiplication(int *a, int *b, int *c, int x, int y){
-	i = 
+ 
 
 }
 
@@ -13,9 +13,9 @@ int main(){
 	int m = 64;
 	int y = 72;
 
-	size_A = x*m*sizeof(int);
-	size_B = m*y*sizeof(int);
-	size_C = x*y*sizeof(int);
+	int size_A = x*m*sizeof(int);
+	int size_B = m*y*sizeof(int);
+	int size_C = x*y*sizeof(int);
 
 	int *h_A = new int[x*m];
 	int *h_B = new int[m*y];
@@ -34,6 +34,10 @@ int main(){
 		}
 	}
 
+	for (int val : h_A) {
+		cout << val << " ";
+	}
+
 	int *d_A, *d_B, *d_C;
 
 	cudaMalloc((void**)&d_A, size_A);
@@ -46,6 +50,6 @@ int main(){
 
 	dim3 blockDim(32,32);
 	dim3 gridDim((y+31)/32,(x+31)/32);
-	matrixmultiplication<<<blockDim,gridDim>>>(d_a,d_b,d_c,x,y);
+	matrixmultiplication<<<blockDim,gridDim>>>(d_A,d_B,d_C,x,y);
 }
 //this is not ready yet...................soon
