@@ -7,7 +7,7 @@ __global__ void matrixmultiplication(int *a, int *b, int *c, int x,int m, int y)
 	int row = blockIdx.y * blockDim.y + threadIdx.y;
 
 	int e=0;
-	if (col*row<x*y){
+	if (row < x && col < y){
 		for(int f1=0; f1<m;f1++){
 			e += a[m*row +f1] * b[col + f1*y];
 		}
