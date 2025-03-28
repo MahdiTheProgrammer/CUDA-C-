@@ -18,9 +18,9 @@ __global__ void matrixmultiplication(int *a, int *b, int *c, int x,int m, int y)
 int main(){
 
 	// Initializing two matrices with shape of x,m and m,y
-	int x = 2;
-	int m = 3;
-	int y = 2;
+	int x = 23000;
+	int m = 30000;
+	int y = 20000;
 
 	int size_A = x*m*sizeof(int);
 	int size_B = m*y*sizeof(int);
@@ -32,7 +32,8 @@ int main(){
 
 	for (int f1=0; f1<x; f1++){
 		for (int f2=0; f2<m;f2++){
-			h_A[f1*m + f2] = f1*m +f2+1;
+			h_A[f1*m + f2] = 1;
+			// h_A[f1*m + f2] = f1*m +f2+1;
 		}
 	}
 
@@ -83,5 +84,11 @@ int main(){
 		}
 		cout << endl;
 	}
+	
+	delete[] h_A;
+	delete[] h_B;
+	delete[] h_C;
+	cudaFree(d_A);
+	cudaFree(d_B);
+	cudaFree(d_C);
 }
-//this is not ready yet...................soon
