@@ -1,0 +1,1 @@
+//Defines the full CNN model 

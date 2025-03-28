@@ -1,0 +1,1 @@
+//Starts the program (creates and trains the model)
