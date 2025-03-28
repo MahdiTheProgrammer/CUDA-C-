@@ -1,17 +1,26 @@
 #include <iostream>
 #include <cuda_runtime.h>
+using namespace std;
 
-__global__ void matrixmultiplication(int *a, int *b, int *c, int x, int y){
- 
+__global__ void matrixmultiplication(int *a, int *b, int *c, int x,int m, int y){
+	int col = blockIdx.x * blockDim.x + threadIdx.x;
+	int row = blockIdx.y * blockDim.y + threadIdx.y;
 
+	int e=0;
+	if (col*row<x*y){
+		for(int f1=0; f1<m;f1++){
+			e += a[m*row +f1] * b[col + f1*y];
+		}
+		c[y*row + col] = e; 
+	}
 }
 
 int main(){
 
 	// Initializing two matrices with shape of x,m and m,y
-	int x = 32;
-	int m = 64;
-	int y = 72;
+	int x = 2;
+	int m = 3;
+	int y = 2;
 
 	int size_A = x*m*sizeof(int);
 	int size_B = m*y*sizeof(int);
@@ -23,20 +32,33 @@ int main(){
 
 	for (int f1=0; f1<x; f1++){
 		for (int f2=0; f2<m;f2++){
-			h_A[f1*x + f2] = f1;
+			h_A[f1*m + f2] = f1*m +f2+1;
 		}
 	}
 
 
 	for (int f1=0; f1<m; f1++){
 		for (int f2=0; f2<y;f2++){
-			h_B[f1*m + f2] = f1;
+			h_B[f1*y + f2] = f1*y + f2 +1;
 		}
 	}
 
-	for (int val : h_A) {
-		cout << val << " ";
+
+	for (int f1=0; f1<x; f1++){
+		for (int f2=0; f2<m; f2++){
+			cout << h_A[f1*m + f2] << ",";
+		}
+		cout << endl;
 	}
+	cout << endl;
+
+	for (int f1=0; f1<m; f1++){
+		for (int f2=0; f2<y; f2++){
+			cout << h_B[f1*y + f2] << ",";
+		}
+		cout << endl;
+	}
+	cout << endl;
 
 	int *d_A, *d_B, *d_C;
 
@@ -50,6 +72,16 @@ int main(){
 
 	dim3 blockDim(32,32);
 	dim3 gridDim((y+31)/32,(x+31)/32);
-	matrixmultiplication<<<blockDim,gridDim>>>(d_A,d_B,d_C,x,y);
+	matrixmultiplication<<<gridDim,blockDim>>>(d_A,d_B,d_C,x,m,y);
+	cudaDeviceSynchronize();
+
+	cudaMemcpy(h_C, d_C, size_C, cudaMemcpyDeviceToHost);
+
+	for (int f1=0; f1<x; f1++){
+		for (int f2=0; f2<y; f2++){
+			cout << h_C[f1*y + f2] << ",";
+		}
+		cout << endl;
+	}
 }
 //this is not ready yet...................soon
