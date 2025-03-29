@@ -1,0 +1,10 @@
+#include <iostream>
+#include <cuda_runtime.h>
+#include "gpu_ops.cu"
+using namespace.std;
+
+int matrix_multiply(){
+	
+	return C;
+}
+
