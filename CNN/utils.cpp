@@ -2,12 +2,12 @@
 #include <cuda_runtime.h>
 #include <cassert>
 
-Tensor(const std::vector<int>& shape_) : shape(shape_){
+Tensor::Tensor(const std::vector<int>& shape_) : shape(shape_){
 	int total_size =1;
         strides.resize(shape.size());
 
-        for(f1=shape.size()-1; f1>=0;f1--){
-        	stride[f1]=total_size;
+        for(int f1=shape.size()-1; f1>=0;f1--){
+        	strides[f1]=total_size;
                 total_size*=shape[f1];
         }
         host_data.resize(total_size);
@@ -28,9 +28,9 @@ void Tensor::to_host(){
         cudaMemcpy(host_data.data(), device_data, total_size * sizeof(float), cudaMemcpyDeviceToHost);
 }
 
-int Tensor::flatten_index(const std::vector<int> indices) {
-	int idx = 0
-	for(int f1=0; f1<indices.size;f1++){
+int Tensor::flatten_index(const std::vector<int>& indices) const {
+	int idx = 0;
+	for(int f1=0; f1<indices.size();f1++){
 		idx += indices[f1] * strides[f1];
 	}
 	return idx;
