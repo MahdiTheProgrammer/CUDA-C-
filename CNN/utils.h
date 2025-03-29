@@ -1,5 +1,4 @@
 //Helper functions, Tensor etc (e.g. random init, printing, etc.)
-
 #pragma once
 #include <vector>
 
