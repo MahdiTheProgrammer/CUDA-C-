@@ -19,6 +19,10 @@ public:
 	float& operator[](const std::vector<int>& indices);
 	static Tensor matmul(const Tensor& t_A, const Tensor& t_B);
 	const std::vector<int>& get_shape() const;
+	const std::vector<int>& get_strides() const;
+	float* device_address() const;
+	bool is_on_gpu() const;
+
 
 private:
 	std::vector<int> shape;

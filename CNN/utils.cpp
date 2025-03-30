@@ -21,7 +21,9 @@ Tensor::~Tensor(){
 }
 
 void Tensor::to_device(){
-	cudaMalloc(&device_data, total_size * sizeof(float));
+	if(device_data==nullptr){
+		cudaMalloc(&device_data, total_size * sizeof(float));
+	}
         cudaMemcpy(device_data, host_data.data(), total_size * sizeof(float), cudaMemcpyHostToDevice);
 	on_gpu = true;
 }
@@ -143,4 +145,16 @@ void Tensor::arrange(const float& start, const float& step){
 
 const std::vector<int>& Tensor::get_shape() const {
 	return shape;
+}
+
+const std::vector<int>& Tensor::get_strides() const{
+	return strides;
+}
+
+float* Tensor::device_address() const{
+	return device_data;
+}
+
+bool Tensor::is_on_gpu() const{
+	return on_gpu;
 }
