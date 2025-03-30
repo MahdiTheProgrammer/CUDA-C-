@@ -19,6 +19,7 @@ public:
 
 	int flatten_index(const std::vector<int>& indices) const;
 	float& operator[](const std::vector<int>& indices);
+	static Tensor matmul(const Tensor& t_A, const Tensor& t_B);
 
 private:
 	std::vector<int> shape;
