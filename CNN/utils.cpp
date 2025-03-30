@@ -37,13 +37,37 @@ void Tensor::print(){
 		cudaMemcpy(host_data.data(), device_data, total_size * sizeof(float), cudaMemcpyDeviceToHost);
 	}
 
+	for(int f1=0;f1<shape.size();f1++){
+		std::cout<<"[";
+	}
+	bool b=false;
 	for(int f1=0;f1<total_size;f1++){
 		for(int f2=0; f2<strides.size()-1;f2++){
-			if(f1 % strides[f2]==0){
-				std::cout<<"\n";
+			if(f1 % strides[f2]==0 && f1!=0 && f1!=1){
+				if(f2<shape.size()-2){
+					if(f2<shape.size()-3){
+					std::cout<<"]\n";
+					}else{
+					std::cout<<"]]\n";
+					}
+					b = true;
+				}
+				else{
+					if(b){
+						std::cout<<"\n[[";
+						b = false;
+					}
+					else{
+						std::cout<<"]\n[";
+					}
+				}
 			}
 		}
-		std::cout << host_data[f1]<<" , ";
+		std::cout << host_data[f1]<<", ";
+	}
+
+	for(int f1=0;f1<shape.size();f1++){
+		std::cout<<"]";
 	}
 	std::cout<<"\n";
 }
@@ -84,9 +108,12 @@ void Tensor::full(const int& value){
 	}
 }
 
-//void arrange(){
-
-//}
+void Tensor::arrange(const float& start, const float& step){
+	cudaMemcpy(host_data.data(), device_data, total_size * sizeof(float), cudaMemcpyDeviceToHost);
+	for(int f1=0; f1<total_size; f1++){
+		host_data[f1] = start+(step*f1);
+	}
+}
 
 //void rand(){
 
