@@ -1,9 +1,10 @@
+#include <iostream>
 #include "utils.h"
 #include <cuda_runtime.h>
 #include <cassert>
 
 Tensor::Tensor(const std::vector<int>& shape_) : shape(shape_){
-	int total_size =1;
+	total_size =1;
         strides.resize(shape.size());
 
         for(int f1=shape.size()-1; f1>=0;f1--){
@@ -22,10 +23,28 @@ Tensor::~Tensor(){
 void Tensor::to_device(){
 	cudaMalloc(&device_data, total_size * sizeof(float));
         cudaMemcpy(device_data, host_data.data(), total_size * sizeof(float), cudaMemcpyHostToDevice);
+	on_gpu = true;
 }
 
 void Tensor::to_host(){
         cudaMemcpy(host_data.data(), device_data, total_size * sizeof(float), cudaMemcpyDeviceToHost);
+	on_gpu = false;
+}
+void Tensor::print(){
+
+	if(on_gpu){
+		cudaMemcpy(host_data.data(), device_data, total_size * sizeof(float), cudaMemcpyDeviceToHost);
+	}
+
+	for(int f1=0;f1<total_size;f1++){
+		for(int f2=0; f2<strides.size()-1;f2++){
+			if(f1 % strides[f2]==0){
+				std::cout<<"\n";
+			}
+		}
+		std::cout << host_data[f1]<<" , ";
+	}
+	std::cout<<"\n";
 }
 
 int Tensor::flatten_index(const std::vector<int>& indices) const {
@@ -36,5 +55,10 @@ int Tensor::flatten_index(const std::vector<int>& indices) const {
 	return idx;
 }
 
-
+float&  Tensor::operator[](const std::vector<int>& indices) {
+	if(on_gpu){
+		cudaMemcpy(host_data.data(), device_data, total_size * sizeof(float), cudaMemcpyDeviceToHost);
+	}
+	return host_data[flatten_index(indices)];
+}
 
