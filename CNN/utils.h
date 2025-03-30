@@ -9,17 +9,16 @@ public:
 	void to_device();
 	void to_host();
 	void print();
-
 	void zeros();
 	void ones();
 	void full(const int& value);
 	void arrange(const float& start,const float& step);
 	void rand();
-	void clone(); 
-
+	void clone();
 	int flatten_index(const std::vector<int>& indices) const;
 	float& operator[](const std::vector<int>& indices);
 	static Tensor matmul(const Tensor& t_A, const Tensor& t_B);
+	const std::vector<int>& get_shape() const;
 
 private:
 	std::vector<int> shape;

@@ -134,10 +134,13 @@ void Tensor::arrange(const float& start, const float& step){
 		cudaMemcpy(device_data, host_data.data(),total_size * sizeof(float), cudaMemcpyHostToDevice);
 	}
 }
-
-void Tensor::rand(){
-}
+//void Tensor::rand(){
+//}
 
 //void clone(){
 
 //}
+
+const std::vector<int>& Tensor::get_shape() const {
+	return shape;
+}
