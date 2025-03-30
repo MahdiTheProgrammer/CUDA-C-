@@ -88,36 +88,55 @@ float&  Tensor::operator[](const std::vector<int>& indices) {
 }
 
 void Tensor::zeros(){
-	cudaMemcpy(host_data.data(), device_data, total_size * sizeof(float), cudaMemcpyDeviceToHost);
+	if (on_gpu){
+		cudaMemcpy(host_data.data(), device_data, total_size * sizeof(float), cudaMemcpyDeviceToHost);
+	}
 	for(int f1=0; f1<total_size; f1++){
 		host_data[f1] = 0;
+	}
+	if (on_gpu){
+		cudaMemcpy(device_data, host_data.data(),total_size * sizeof(float), cudaMemcpyHostToDevice);
 	}
 }
 
 void Tensor::ones(){
-	cudaMemcpy(host_data.data(), device_data, total_size * sizeof(float), cudaMemcpyDeviceToHost);
+	if (on_gpu){
+		cudaMemcpy(host_data.data(), device_data, total_size * sizeof(float), cudaMemcpyDeviceToHost);
+	}
 	for(int f1=0; f1<total_size; f1++){
 		host_data[f1] = 1;
+	}
+	if (on_gpu){
+		cudaMemcpy(device_data, host_data.data(),total_size * sizeof(float), cudaMemcpyHostToDevice);
 	}
 }
 
 void Tensor::full(const int& value){
-	cudaMemcpy(host_data.data(), device_data, total_size * sizeof(float), cudaMemcpyDeviceToHost);
+	if (on_gpu){
+		cudaMemcpy(host_data.data(), device_data, total_size * sizeof(float), cudaMemcpyDeviceToHost);
+	}
 	for(int f1=0; f1<total_size; f1++){
 		host_data[f1] = value;
+	}
+	if (on_gpu){
+		cudaMemcpy(device_data, host_data.data(),total_size * sizeof(float), cudaMemcpyHostToDevice);
 	}
 }
 
 void Tensor::arrange(const float& start, const float& step){
-	cudaMemcpy(host_data.data(), device_data, total_size * sizeof(float), cudaMemcpyDeviceToHost);
+	if (on_gpu){
+		cudaMemcpy(host_data.data(), device_data, total_size * sizeof(float), cudaMemcpyDeviceToHost);
+	}
 	for(int f1=0; f1<total_size; f1++){
 		host_data[f1] = start+(step*f1);
 	}
+	if (on_gpu){
+		cudaMemcpy(device_data, host_data.data(),total_size * sizeof(float), cudaMemcpyHostToDevice);
+	}
 }
 
-//void rand(){
-
-//}
+void Tensor::rand(){
+}
 
 //void clone(){
 

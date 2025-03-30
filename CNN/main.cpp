@@ -3,9 +3,9 @@
 #include "utils.h"
 
 int  main(){
-	std::vector<int> shape = {2,3,4,5,5,3};
+	std::vector<int> shape = {3,3,3};
 	Tensor t_A(shape);
-	t_A.arrange(1,1);
+	t_A.rand();
 	t_A.print();
 	return 0;
 }
