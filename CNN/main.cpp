@@ -9,6 +9,8 @@ int  main(){
 	t_A.print();
 	t_A.to_device();
 	float *d_A = t_A.device_address();
-	std::cout<< static_cast<void*>(d_A) << std::endl;
+	bool b = t_A.is_on_gpu();
+	std::cout<<"Is on GPU." << b << std::endl;
+	std::cout<<"Address on GPU" <<static_cast<void*>(d_A) << std::endl;
 	return 0;
 }
