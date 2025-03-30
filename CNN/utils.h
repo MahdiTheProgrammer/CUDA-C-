@@ -9,6 +9,14 @@ public:
 	void to_device();
 	void to_host();
 	void print();
+
+	void zeros();
+	void ones();
+	void full(const int& value);
+	void arrange(const float& start,const float& step);
+	void rand();
+	void clone(); 
+
 	int flatten_index(const std::vector<int>& indices) const;
 	float& operator[](const std::vector<int>& indices);
 

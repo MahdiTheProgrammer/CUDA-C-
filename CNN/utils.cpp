@@ -30,6 +30,7 @@ void Tensor::to_host(){
         cudaMemcpy(host_data.data(), device_data, total_size * sizeof(float), cudaMemcpyDeviceToHost);
 	on_gpu = false;
 }
+
 void Tensor::print(){
 
 	if(on_gpu){
@@ -62,3 +63,35 @@ float&  Tensor::operator[](const std::vector<int>& indices) {
 	return host_data[flatten_index(indices)];
 }
 
+void Tensor::zeros(){
+	cudaMemcpy(host_data.data(), device_data, total_size * sizeof(float), cudaMemcpyDeviceToHost);
+	for(int f1=0; f1<total_size; f1++){
+		host_data[f1] = 0;
+	}
+}
+
+void Tensor::ones(){
+	cudaMemcpy(host_data.data(), device_data, total_size * sizeof(float), cudaMemcpyDeviceToHost);
+	for(int f1=0; f1<total_size; f1++){
+		host_data[f1] = 1;
+	}
+}
+
+void Tensor::full(const int& value){
+	cudaMemcpy(host_data.data(), device_data, total_size * sizeof(float), cudaMemcpyDeviceToHost);
+	for(int f1=0; f1<total_size; f1++){
+		host_data[f1] = value;
+	}
+}
+
+//void arrange(){
+
+//}
+
+//void rand(){
+
+//}
+
+//void clone(){
+
+//}
