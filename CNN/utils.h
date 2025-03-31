@@ -15,6 +15,7 @@ public:
 	void arrange(const float& start,const float& step);
 	void rand();
 	void clone();
+	void from_list();
 	int flatten_index(const std::vector<int>& indices) const;
 	float& operator[](const std::vector<int>& indices);
 	static Tensor matmul(const Tensor& t_A, const Tensor& t_B);
