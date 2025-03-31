@@ -2,7 +2,7 @@
 
 
 
-__global__ void matrixmultiplication(int *a, int *b, int *c, int x, int y){
+__global__ void matmul(float *t_A, float *t_B, float *c, std::vecotr<int>& s_A, std::vector<int> ){
 	int col = blockIdx.x * blockDim.x + threadIdx.x;
 	int row = blockIdx.y * blockDim.y + threadIdx.y;
 
