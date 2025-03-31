@@ -22,7 +22,7 @@ public:
 	const std::vector<int>& get_strides() const;
 	float* device_address() const;
 	bool is_on_gpu() const;
-
+	int get_total_size() const;
 
 private:
 	std::vector<int> shape;

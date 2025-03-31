@@ -158,3 +158,6 @@ float* Tensor::device_address() const{
 bool Tensor::is_on_gpu() const{
 	return on_gpu;
 }
+int get_total_size() const{
+	return total_size();
+}
