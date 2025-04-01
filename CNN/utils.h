@@ -18,7 +18,7 @@ public:
 	void from_list(float* list);
 	int flatten_index(const std::vector<int>& indices) const;
 	float& operator[](const std::vector<int>& indices);
-	static Tensor matmul(const Tensor& t_A, const Tensor& t_B);
+	static float* matmul(const Tensor& t_A, const Tensor& t_B);
 	const std::vector<int>& get_shape() const;
 	const std::vector<int>& get_strides() const;
 	float* device_address() const;

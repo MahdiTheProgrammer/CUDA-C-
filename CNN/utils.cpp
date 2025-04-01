@@ -2,6 +2,7 @@
 #include "utils.h"
 #include <cuda_runtime.h>
 #include <cassert>
+#include "mat_op.h"
 
 Tensor::Tensor(const std::vector<int>& shape_) : shape(shape_){
 	total_size =1;
@@ -158,9 +159,16 @@ float* Tensor::device_address() const{
 bool Tensor::is_on_gpu() const{
 	return on_gpu;
 }
-int get_total_size() const{
-	return total_size();
+int Tensor::get_total_size() const{
+	return total_size;
 }
-void from_list(float* data){
-	device_data = data;
+void Tensor::from_list(float* data){
+	for (int i = 0; i < total_size; ++i) {
+		host_data[i] = data[i];
+	}
+	if (on_gpu){
+		cudaMemcpy(device_data, host_data.data(), total_size * sizeof(float),cudaMemcpyHostToDevice);
+	}
+//	device_data = data;
+//	host_data = *data;
 }
