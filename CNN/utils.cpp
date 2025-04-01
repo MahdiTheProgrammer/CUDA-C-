@@ -161,3 +161,6 @@ bool Tensor::is_on_gpu() const{
 int get_total_size() const{
 	return total_size();
 }
+void from_list(float* data){
+	device_data = data;
+}

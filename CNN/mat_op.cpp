@@ -8,7 +8,7 @@ Tensor Tensor::matmul(const Tensor& t_A, const Tensor& t_B){
 	shape_A = t_A.get_shape();
 	shape_B = t_B.get_shape();
 	int d=1;
-	for(itn f1=0; f1<shape.size()-2;f1++){
+	for(int f1=0; f1<shape.size()-2;f1++){
 		d*=shape_A[f1];
 	}
 	t_A.to_device();
@@ -24,6 +24,6 @@ Tensor Tensor::matmul(const Tensor& t_A, const Tensor& t_B){
 	matrixmultiplication<<<gridDim, blockDim>>>(add_A,add_B,add_C,shape_A,shape_B);
 	cudaDeviceSynchronize();
 	cudaMemcpy(h_C, add_C, total_size_C * sizeof(float), cudaMemcpyHostToDevice);
-	return t_C;
+	return h_C;
 }
 
