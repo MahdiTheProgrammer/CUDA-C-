@@ -9,7 +9,7 @@ __global__ void matrixmultiplication(float *t_A, float *t_B, float *c, int batch
 	int col = blockIdx.x * blockDim.x + threadIdx.x;
 	int row = blockIdx.y * blockDim.y + threadIdx.y;
 	int i = (batch_id * m * k) + row * k + col;
-	int e=0.0f;
+	float e=0.0f;
 	if (row < m && col < k){
 		for(int f1=0; f1<n;f1++){
 			e += t_A[ (batch_id * m  * n) + n*row +f1 ] * t_B[ ( batch_id * n  * k ) + (k*f1) + col];
