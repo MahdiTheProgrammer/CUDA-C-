@@ -10,3 +10,14 @@ Tensor ReLULayer::forward(const Tensor& input){
 
 	return output;
 }
+DenseLayer::DenseLayer(int input_size, int output_size){
+// Init dense layer here
+}
+
+Tensor flatten::forward(const Tensor& input){
+
+}
+
+Tensor MaxPool2d: public Layer{
+
+}

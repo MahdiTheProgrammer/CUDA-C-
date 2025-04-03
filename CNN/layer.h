@@ -6,7 +6,8 @@ public:
 	virtual ~Layer() {}
 };
 
-class DenseLayer : public Layer {
+class Dense : public Layer {
+private:
 	Tensor weights;
 	Tensor bias;
 public:
@@ -15,7 +16,23 @@ public:
 };
 
 
-class ReLULayer: public Layer {
+class ReLU: public Layer {
 public:
 	Tensor forward(const Tensor& input) override;
-}; 
+};
+
+class MaxPool2d: public Layer{
+public:
+	MaxPool2d(int width, int height);
+	Tensor forward(const Tensor& input) override;
+};
+
+class flatten: public Layer{
+public:
+	Tensor forward(const Tensor& input) override;
+};
+
+class softmax: public Layer{
+public:
+	Tensor forward(const Tensor& input) override;
+};
