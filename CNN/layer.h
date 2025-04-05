@@ -10,8 +10,10 @@ class Conv2d: public Layer{
 private:
 	Tensor kernals;
 	Tensor bias;
+	int stride;
+	int padding;
 public:
-	Conv2dinit(int input_channel, int output_channel);
+	Conv2dinit(int input_channel, int output_channel,int kernal_size,int padding, int stride);
 	Tensor forward(const Tensor& input) override;
 }
 
