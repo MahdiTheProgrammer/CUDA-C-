@@ -6,15 +6,23 @@ public:
 	virtual ~Layer() {}
 };
 
-class Dense : public Layer {
+class Conv2d: public Layer{
+private:
+	Tensor kernals;
+	Tensor bias;
+public:
+	Conv2dinit(int input_channel, int output_channel);
+	Tensor forward(const Tensor& input) override;
+}
+
+class Dense: public Layer {
 private:
 	Tensor weights;
 	Tensor bias;
 public:
-	DenseLayer(int in_features, int out_featuers);
+	Denseinit(int in_features, int out_featuers);
 	Tensor forward(const Tensor& input) override;
 };
-
 
 class ReLU: public Layer {
 public:
