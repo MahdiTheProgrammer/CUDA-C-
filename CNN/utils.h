@@ -24,6 +24,7 @@ public:
 	float* device_address() const;
 	bool is_on_gpu() const;
 	int get_total_size() const;
+	const std::vector<float>& get_data() const;
 
 private:
 	std::vector<int> shape;

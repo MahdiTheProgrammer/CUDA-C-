@@ -114,7 +114,7 @@ void Tensor::ones(){
 	}
 }
 
-void Tensor::full(const int& value){
+void Tensor::full(const float& value){
 	if (on_gpu){
 		cudaMemcpy(host_data.data(), device_data, total_size * sizeof(float), cudaMemcpyDeviceToHost);
 	}
@@ -171,4 +171,11 @@ void Tensor::from_list(float* data){
 	}
 //	device_data = data;
 //	host_data = *data;
+}
+const std::vector<float>& get_data() const {
+	if (on_gpu){
+		cudaMemcpy(host_data.data(), device_data, total_size * sizeof(float), cudaMemcpyDeviceToHost);
+	}
+
+	return host_data;
 }

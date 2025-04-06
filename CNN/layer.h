@@ -33,7 +33,7 @@ public:
 
 class MaxPool2d: public Layer{
 public:
-	MaxPool2d(int width, int height);
+	MaxPool2dinit(int width, int height);
 	Tensor forward(const Tensor& input) override;
 };
 
