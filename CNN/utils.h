@@ -11,7 +11,7 @@ public:
 	void print();
 	void zeros();
 	void ones();
-	void full(const int& value);
+	void full(const float& value);
 	void arrange(const float& start,const float& step);
 	void rand();
 	void clone();
@@ -24,7 +24,7 @@ public:
 	float* device_address() const;
 	bool is_on_gpu() const;
 	int get_total_size() const;
-	const std::vector<float>& get_data() const;
+	const std::vector<float>& get_data();
 
 private:
 	std::vector<int> shape;

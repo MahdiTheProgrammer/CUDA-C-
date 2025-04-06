@@ -1,7 +1,7 @@
-//#include <iostream>
-//#include <cuda_runtime.h>
-//#include "mat_op.h"
-//#include "utils.h"
+#include <iostream>
+#include <cuda_runtime.h>
+#include "mat_op.h"
+#include "utils.h"
 
 
 float* Tensor::matmul(const Tensor& t_A, const Tensor& t_B){
