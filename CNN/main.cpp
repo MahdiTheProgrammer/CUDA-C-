@@ -3,9 +3,9 @@
 #include "utils.h"
 
 int  main(){
-	std::vector<int> shape_A = {4,3,10,12};
-	std::vector<int> shape_B = {4,3,12,100};
-	std::vector<int> shape_C = {4,3,10,100};
+	std::vector<int> shape_A = {1,3,2,2};
+	std::vector<int> shape_B = {1,3,2,2};
+	std::vector<int> shape_C = {1,3,2,2};
 	Tensor t_A(shape_A);
 	Tensor t_B(shape_B);
 	Tensor t_C(shape_C);
