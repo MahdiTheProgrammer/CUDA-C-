@@ -11,6 +11,11 @@ void Dense::Denseinit(int input_size, int output_size){
 }
 
 Tensor ReLU::forward(const Tensor& input){
+	std::vector<float>& in = input.get_data();
+	std::vector<float> output;
+	for (f1=0; f1<input.size();f1++){
+		output.push_back(input[f1] > 0 ? input[f1] : 0);
+	}
 	return output;
 }
 
