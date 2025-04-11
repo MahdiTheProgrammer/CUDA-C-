@@ -32,7 +32,7 @@ void MaxPool2d::MaxPool2dinit(int width, int height){
 }
 
 void Conv2d::Conv2d(int input_channel, int output_channel,int kernal_size,int padding, int stride){
-	std::vector<int> weight_shape = {output_channel, input_channel, kernal_size + (padding * 2), kernal_size + (padding + 2)};
+	std::vector<int> weight_shape = {output_channel, input_channel, kernal_size, kernal_size};
 	weights = Tensor(weight_shape);
 	std::vecotr<int> bias_shape = {output_channel};
 	bias = Tensor(bias_shape);
