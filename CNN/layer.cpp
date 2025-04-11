@@ -38,6 +38,9 @@ void Conv2d::Conv2d(int input_channel, int output_channel,int kernal_size){
 	bias = Tensor(bias_shape);
 	weights.to_device();
 	bias.to_device();
+	input = input_channel;
+	output = output_channel;
+	kernal = kernal_size;
 }
 
 //conv2d::forward is in .cu file.

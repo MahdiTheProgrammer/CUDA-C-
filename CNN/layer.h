@@ -12,6 +12,9 @@ private:
 	Tensor bias;
 	int stride;
 	int padding;
+	int input;
+	int output;
+	int kernal;
 public:
 	Conv2d(int input_channel, int output_channel,int kernal_size);
 	Tensor forward(const Tensor& input) override;
