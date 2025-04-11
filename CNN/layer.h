@@ -13,7 +13,7 @@ private:
 	int stride;
 	int padding;
 public:
-	Conv2dinit(int input_channel, int output_channel,int kernal_size,int padding, int stride);
+	Conv2d(int input_channel, int output_channel,int kernal_size,int padding, int stride);
 	Tensor forward(const Tensor& input) override;
 }
 

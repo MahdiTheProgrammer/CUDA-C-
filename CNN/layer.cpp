@@ -31,10 +31,13 @@ void MaxPool2d::MaxPool2dinit(int width, int height){
 
 }
 
-void Conv2d::Conv2dinit(int input_channel, int output_channel,int kernal_size,int padding, int stride){
-// I will init Conv2d here
+void Conv2d::Conv2d(int input_channel, int output_channel,int kernal_size,int padding, int stride){
+	std::vector<int> weight_shape = {output_channel, input_channel, kernal_size + (padding * 2), kernal_size + (padding + 2)};
+	weights = Tensor(weight_shape);
+	std::vecotr<int> bias_shape = {output_channel};
+	bias = Tensor(bias_shape);
+	weights.to_device();
+	bias.to_device();
 }
 
-Tensor Conv2d::forward(const Tensor& input){
-	return output;
-}
+//conv2d::forward is in .cu file.
