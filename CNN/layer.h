@@ -8,12 +8,12 @@ public:
 
 class Conv2d: public Layer{
 private:
-	Tensor kernals;
+	Tensor weights;
 	Tensor bias;
 	int stride;
 	int padding;
 public:
-	Conv2d(int input_channel, int output_channel,int kernal_size,int padding, int stride);
+	Conv2d(int input_channel, int output_channel,int kernal_size);
 	Tensor forward(const Tensor& input) override;
 }
 
