@@ -2,19 +2,40 @@
 #include <cuda_runtime.h>
 
 
-__global__ void convolution2d(){
+__global__ void convolution2d(float* input,float*kernal, float* bias, int output, int x_out, int y_out){
 
+	
 
 }
 
 Tensor Conv2d::forward(Tensor& input){
 	std::vecotr<int> input_shape = input.get_shape();
-	if ((input_shape[input_shape.size()-2]+(padding*2)) % 2 == 0):
-		x = 
-	int x = input_shape[input_shape.size()-2]-kernal+1+(padding*2)
-	std::vector<int> output_shape = {output,input_shape[input_shape.size()-2]-kernal+1 }
-	dim3 blockDim();
-	dim3 gridDim(output);
+
+	int padded_height = input_shape[input_shape.size()-2]+ (padding * 2);
+	int x_out = 0;
+
+	int padded_width = input_shape[input_shape.size()-1] + (padding * 2);
+	int y_out = 0;
+
+	for(int f1=kernal; f1=<padded_height; f1+stride){
+		x_out++;
+	}
+
+	for(int f1=kernal; f1=<padded_width; f1+stride){
+		y_out++;
+	}
+
+	float* in = input.device_address();
+	float* kernal = weights.device_address();
+	float* b = bias.device_address();
+
+	std::vector<int> output_shape = {output,x_out,y_out};
+	dim3 blockDim(32,32);
+	dim3 gridDim(output,(x_out+31)/32,(y_out+31)/32);
+	convolution2d<<<gridDim, blockDim>>>(in, kernal, b, output, x_out, y_out);
+
+	cudaDeviceSynchronize();
+
 
 
 	return output;
