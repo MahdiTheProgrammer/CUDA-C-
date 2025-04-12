@@ -3,7 +3,7 @@
 #include "utils.h"
 
 int  main(){
-	std::vector<int> shape_A = {1,3,2,2};
+	std::vector<int> shape_A = {1,3,7,3};
 //	std::vector<int> shape_B = {1,3,2,2};
 //	std::vector<int> shape_C = {1,3,2,2};
 	Tensor t_A(shape_A);
@@ -12,15 +12,18 @@ int  main(){
 //	std::vector<float> i_a = {1.0f, 2.0f, 3.0f, 4.0f};;
 	t_A.to_device();
 //	t_B.to_device();
-//	t_A.arrange(1,1);
+	t_A.arrange(1,0);
 //	t_B.arrange(0,2);
 //	t_A.from_list(i_a.data());
 //	t_B.from_list(i_b.data());
 	t_A.print();
-	const std::vector<float>& d = t_A.get_data();
-	for (float val : d){
-		std::cout<<val<< " ";
-	}
+	std::cout<<"\n";
+	t_A.add_padding(1,0.0f);
+	t_A.print();
+//	const std::vector<float>& d = t_A.get_data();
+//	for (float val : d){
+//		std::cout<<val<< " ";
+//	}
 //	std::cout<<"\n";
 //	t_B.print();
 //	std::cout<<"\n";

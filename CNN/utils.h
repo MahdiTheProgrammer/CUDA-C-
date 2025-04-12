@@ -16,7 +16,7 @@ public:
 	void rand();
 	void clone();
 	void from_list(float* list);
-	void add_padding(int padding, float& value);
+	void add_padding(int padding, float value);
 	int flatten_index(const std::vector<int>& indices) const;
 	int get_total_size() const;
 	const std::vector<int>& get_shape() const;
