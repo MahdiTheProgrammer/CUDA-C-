@@ -143,6 +143,37 @@ void Tensor::arrange(const float& start, const float& step){
 //void clone(){
 
 //}
+void Tensor::add_padding(int padding, float& value){
+	if (on_gpu){
+		cudaMemcpy(host_data.data(), device_data, total_size * sizeof(float), cudaMemcpyDeviceToHost);
+	}
+	int batch = 1;
+	for(int f=0; f<shape.size()-2;f++){
+		batch*=shape[f1];
+	}
+	int counter = 0;
+	int x = shape[shape.size()-2];
+	int y = shape[shape.size()-1];
+
+	for(int f=0; f<batch; f++){
+		host_data.insert(host_data.begin()+ f*x*y + counter , y+3, value);
+		counter+=y+3;
+
+		for(n=0;n<x-1;n++){
+			host_data.insert(host_data.begin()+ (y*(n+1))+ counter ,2,value);
+			counter+=2;
+		}
+
+		host_data.insert(host_data.begin() + ((f+1)*x*y) + counter, y+3, value);
+		counter+=y+3;
+	}
+	shape[shape.size()-1] = shape[shape_size()-1] + (padding*2);
+	shape[shape.size()-2] = shape[shape_size()-2] + (padding*2);
+
+	if (on_gpu){
+		cudaMemcpy(device_data, host_data.data(), total_size * sizeof(float), cudaMemcpyHostToDevice);
+	}
+}
 
 const std::vector<int>& Tensor::get_shape() const {
 	return shape;

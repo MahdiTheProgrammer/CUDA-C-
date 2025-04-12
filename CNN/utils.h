@@ -16,15 +16,16 @@ public:
 	void rand();
 	void clone();
 	void from_list(float* list);
+	void add_padding(int padding, float& value);
 	int flatten_index(const std::vector<int>& indices) const;
-	float& operator[](const std::vector<int>& indices);
-	static float* matmul(const Tensor& t_A, const Tensor& t_B);
+	int get_total_size() const;
 	const std::vector<int>& get_shape() const;
 	const std::vector<int>& get_strides() const;
-	float* device_address() const;
-	bool is_on_gpu() const;
-	int get_total_size() const;
 	const std::vector<float>& get_data();
+	float* device_address() const;
+	float& operator[](const std::vector<int>& indices);
+	static float* matmul(const Tensor& t_A, const Tensor& t_B);
+	bool is_on_gpu() const;
 
 private:
 	std::vector<int> shape;
