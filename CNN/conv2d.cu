@@ -4,11 +4,15 @@
 
 __global__ void convolution2d(float* input,float*kernal, float* bias, int output, int x_out, int y_out){
 
-	
+	int z = gridIdx.z;
+	int col = blockIdx.x * blockDim.x + threadIdx.x;
+	int row = blockIdx.y * blockDim.y + threadIdx.y;
+ 
 
 }
 
 Tensor Conv2d::forward(Tensor& input){
+
 	std::vecotr<int> input_shape = input.get_shape();
 
 	int padded_height = input_shape[input_shape.size()-2]+ (padding * 2);
@@ -29,10 +33,10 @@ Tensor Conv2d::forward(Tensor& input){
 	float* kernal = weights.device_address();
 	float* b = bias.device_address();
 
-	std::vector<int> output_shape = {output,x_out,y_out};
+	std::vector<int> output_shape = {num_output,x_out,y_out};
 	dim3 blockDim(32,32);
 	dim3 gridDim(output,(x_out+31)/32,(y_out+31)/32);
-	convolution2d<<<gridDim, blockDim>>>(in, kernal, b, output, x_out, y_out);
+	convolution2d<<<gridDim, blockDim>>>(in, kernal, b, num_outputs, x_out, y_out);
 
 	cudaDeviceSynchronize();
 

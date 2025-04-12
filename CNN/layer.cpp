@@ -39,7 +39,7 @@ void Conv2d::Conv2d(int input_channel, int output_channel,int kernal_size){
 	weights.to_device();
 	bias.to_device();
 	input = input_channel;
-	output = output_channel;
+	num_outputs = output_channel;
 	kernal = kernal_size;
 }
 

@@ -13,7 +13,7 @@ private:
 	int stride;
 	int padding;
 	int input;
-	int output;
+	int num_outputs;
 	int kernal;
 public:
 	Conv2d(int input_channel, int output_channel,int kernal_size);
