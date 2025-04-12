@@ -28,7 +28,7 @@ Tensor Conv2d::forward(Tensor& input){
 	for(int f1=kernal; f1=<padded_width; f1+stride){
 		y_out++;
 	}
-
+	input.add_padding(padding,0);
 	float* in = input.device_address();
 	float* kernal = weights.device_address();
 	float* b = bias.device_address();
