@@ -1,4 +1,5 @@
 //layer.h
+#pragma once
 
 class Layer {
 public:
@@ -18,16 +19,16 @@ private:
 public:
 	Conv2d(int input_channel, int output_channel,int kernal_size);
 	Tensor forward(const Tensor& input) override;
-}
-
-class Dense: public Layer {
-private:
-	Tensor weights;
-	Tensor bias;
-public:
-	Denseinit(int in_features, int out_featuers);
-	Tensor forward(const Tensor& input) override;
 };
+
+//class Dense: public Layer {
+//private:
+//	Tensor weights;
+//	Tensor bias;
+//public:
+//	Dense(int in_features, int out_featuers);
+//	Tensor forward(const Tensor& input) override;
+//};
 
 class ReLU: public Layer {
 public:
@@ -36,7 +37,7 @@ public:
 
 class MaxPool2d: public Layer{
 public:
-	MaxPool2dinit(int width, int height);
+	MaxPool2d(int width, int height);
 	Tensor forward(const Tensor& input) override;
 };
 

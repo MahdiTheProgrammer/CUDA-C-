@@ -1,6 +1,9 @@
 //Starts the program (creates and trains the model)
 #include <iostream>
 #include "utils.h"
+#include "layer.h"
+#include "model.h"
+
 
 int  main(){
 	std::vector<int> shape_A = {1,3,7,3};
@@ -12,14 +15,16 @@ int  main(){
 //	std::vector<float> i_a = {1.0f, 2.0f, 3.0f, 4.0f};;
 	t_A.to_device();
 //	t_B.to_device();
-	t_A.arrange(1,0);
+	t_A.arrange(1.001,0.001);
 //	t_B.arrange(0,2);
 //	t_A.from_list(i_a.data());
 //	t_B.from_list(i_b.data());
 	t_A.print();
 	std::cout<<"\n";
-	t_A.add_padding(1,0.0f);
-	t_A.print();
+	Model model;
+	model.add(Layer.Conv2d);
+//	t_A.add_padding(1,0.0f);
+//	t_A.print();
 //	const std::vector<float>& d = t_A.get_data();
 //	for (float val : d){
 //		std::cout<<val<< " ";
