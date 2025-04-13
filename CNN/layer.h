@@ -21,14 +21,14 @@ public:
 	Tensor forward(const Tensor& input) override;
 };
 
-//class Dense: public Layer {
-//private:
-//	Tensor weights;
-//	Tensor bias;
-//public:
-//	Dense(int in_features, int out_featuers);
-//	Tensor forward(const Tensor& input) override;
-//};
+class Dense: public Layer {
+private:
+	Tensor weights;
+	Tensor bias;
+public:
+	Dense(int in_features, int out_featuers);
+	Tensor forward(const Tensor& input) override;
+};
 
 class ReLU: public Layer {
 public:

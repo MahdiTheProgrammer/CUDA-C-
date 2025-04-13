@@ -1,4 +1,4 @@
-#include "layer.cpp"
+#include "layer.h"
 
 class Model {
 	std::vector<Layer *> layers;
