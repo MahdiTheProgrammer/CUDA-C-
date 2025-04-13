@@ -11,7 +11,7 @@ __global__ void convolution(float* input,float*weights, float* bias, float* outp
 	for (int d=0; d<input_dim; d++){
 		for (int kh=0;kh<kernal_size;kh++){
 			for (int kw=0; kw<kernal_size;kw++){
-				i+=weights[(d*kernal_size*kernal_size)+(kh*kernal_size)+kw] * input[(d*width_in*height_in)+(row*(stride+1))+(col*(stride+1))]
+				i+=weights[(d*kernal_size*kernal_size)+(kh*kernal_size)+kw] * input[(d*width_in*height_in)+(row*(stride+1)*width_in)+(col*(stride+1))+kw+(kh*width_in)];
 			}
 		}
 	}
