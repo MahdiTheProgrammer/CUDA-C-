@@ -208,7 +208,7 @@ void Tensor::from_list(float* data){
 //	device_data = data;
 //	host_data = *data;
 }
-const std::vector<float>& Tensor::get_data() const{ 
+const std::vector<float>& Tensor::get_data(){
 	if (on_gpu){
 		cudaMemcpy(host_data.data(), device_data, total_size * sizeof(float), cudaMemcpyDeviceToHost);
 	}

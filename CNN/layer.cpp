@@ -1,7 +1,7 @@
 //Defines the full CNN model t
 #include "layer.h"
 
-Tensor Dense::forward(const Tensor& input) {
+Tensor Dense::forward(Tensor& input) {
 
 }
 
@@ -12,7 +12,7 @@ Dense::Dense(int input_size, int output_size)
 
 }
 
-Tensor ReLU::forward(const Tensor& input){
+Tensor ReLU::forward(Tensor& input){
 	const std::vector<float>& in = input.get_data();
 	std::vector<float> output_vector;
 	for (int f1=0; f1<in.size();f1++){
@@ -23,11 +23,11 @@ Tensor ReLU::forward(const Tensor& input){
 	return t_output;
 }
 
-Tensor flatten::forward(const Tensor& input){
+Tensor flatten::forward(Tensor& input){
 
 }
 
-Tensor MaxPool2d::forward(const Tensor& input){
+Tensor MaxPool2d::forward(Tensor& input){
 
 }
 
