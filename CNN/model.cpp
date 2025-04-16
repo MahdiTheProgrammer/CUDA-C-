@@ -3,10 +3,11 @@
 
 
 void Model::add(Layer* layer) {
-	layer.push_back(layer);
+	layers.push_back(layer);
+//	layer->push_back();
 }
 
-Tensor Model::forward(const Tensor^& input){
+Tensor Model::forward(const Tensor& input){
 	Tensor x = input;
 	for (auto* layer: layers){
 		x = layer->forward(x);

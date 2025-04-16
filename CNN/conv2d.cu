@@ -22,7 +22,7 @@ __global__ void convolution(float* input,float*weights, float* bias, float* outp
 
 Tensor Conv2d::forward(Tensor& input){
 
-	std::vecotr<float> input_shape = input.get_shape();
+	std::vector<float> input_shape = input.get_shape();
 	int input_dim = input_shape[input_shape.size()-3];
 	int height_in = input_shape[input_shape.size()-2];
 	int width_in = input_shape[input_shape.size()-1];
@@ -32,6 +32,10 @@ Tensor Conv2d::forward(Tensor& input){
 
 	int padded_width = input_shape[input_shape.size()-1] + (padding * 2);
 	int width_out = 0;
+
+	int height_out = 0;
+	int width_out = 0;
+
 
 	for(int f1=kernal; f1=<padded_height; f1+stride){
 		height_out++;
