@@ -7,7 +7,7 @@ __global__ void convolution(float* input,float*weights, float* bias, float* outp
 	int z = blockIdx.z;
 	int col = blockIdx.x * blockDim.x + threadIdx.x;
 	int row = blockIdx.y * blockDim.y + threadIdx.y;
-	int i = 0.0f;
+	float i = 0.0f;
 	for (int d=0; d<input_dim; d++){
 		for (int kh=0;kh<kernal_size;kh++){
 			for (int kw=0; kw<kernal_size;kw++){

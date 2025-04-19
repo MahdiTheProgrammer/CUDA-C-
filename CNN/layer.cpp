@@ -36,14 +36,14 @@ MaxPool2d::MaxPool2d(int width, int height){
 }
 
 //conv2d::forward is in .cu file.
-Conv2d::Conv2d(int input_channel, int output_channel, int kernal_size)
+Conv2d::Conv2d(int input_channel, int output_channel, int kernal_size, int stride, int padding)
     : weights({output_channel, input_channel, kernal_size, kernal_size}),
       bias({output_channel}),
       input(input_channel),
       num_outputs(output_channel),
       kernal(kernal_size),
-      stride(1),  // default values (or pass as parameters)
-      padding(0)  // default values (or pass as parameters)
+      stride(stride),
+      padding(padding)
 {
     weights.ones();
     bias.ones();

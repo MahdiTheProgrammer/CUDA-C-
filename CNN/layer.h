@@ -18,7 +18,7 @@ private:
 	int num_outputs;
 	int kernal;
 public:
-	Conv2d(int input_channel, int output_channel,int kernal_size);
+	Conv2d(int input_channel, int output_channel, int kernal_size, int stride, int padding);
 	Tensor forward(Tensor& input) override;
 };
 
