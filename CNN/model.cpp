@@ -4,7 +4,6 @@
 
 void Model::add(Layer* layer) {
 	layers.push_back(layer);
-//	layer->push_back();
 }
 
 Tensor Model::forward(const Tensor& input){
@@ -13,4 +12,8 @@ Tensor Model::forward(const Tensor& input){
 		x = layer->forward(x);
 	}
 	return x;
+}
+
+Model::~Model(){
+
 }

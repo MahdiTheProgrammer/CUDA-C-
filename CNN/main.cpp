@@ -23,6 +23,7 @@ int  main(){
 	std::cout<<"\n";
 	Model model;
 	model.add(new Conv2d(1,1,1));
+	model.forward(t_A);
 //	t_A.add_padding(1,0.0f);
 //	t_A.print();
 //	const std::vector<float>& d = t_A.get_data();
