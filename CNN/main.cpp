@@ -6,8 +6,8 @@
 
 
 int  main(){
-	std::vector<int> shape_A = {1,7,3};
-	std::vector<int> shape_B = {2,9,5};
+	std::vector<int> shape_A = {1,6,6};
+	std::vector<int> shape_B = {1,8,8};
 //	std::vector<int> shape_C = {1,3,2,2};
 	Tensor t_A(shape_A);
 	Tensor t_B(shape_B);
@@ -21,8 +21,16 @@ int  main(){
 //	t_B.from_list(i_b.data());
 	t_A.print();
 	std::cout<<"\n";
+//	t_A.add_padding(1,0);
+//	t_A.print();
+
+//    	std::vector<int> shape = t_A.get_shape();
+//	std::cout<<"\n";
+//   	 for (int num : shape) {
+//        	std::cout << num << " ";
+//   	 }
 	Model model;
-	model.add(new Conv2d(1,1,1,1,0));
+	model.add(new Conv2d(1,1,1,1,1));
 	t_B = model.forward(t_A);
 	t_B.print();
 //	t_A.add_padding(1,0.0f);
