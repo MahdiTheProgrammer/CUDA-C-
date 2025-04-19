@@ -4,7 +4,7 @@
 
 __global__ void convolution(float* input,float*weights, float* bias, float* output ,int input_dim, int output_dim, int height_out, int width_out, int height_in, int width_in,  int kernal_size,int stride){
 
-	int z = gridIdx.z;
+	int z = blockIdx.z;
 	int col = blockIdx.x * blockDim.x + threadIdx.x;
 	int row = blockIdx.y * blockDim.y + threadIdx.y;
 	int i = 0.0f;
@@ -52,16 +52,16 @@ Tensor Conv2d::forward(Tensor& input){
         float* output = new float[total_size_output];
         cudaMalloc((void**)&add_output,total_size_output * sizeof(float));
 
-	std::vector<int> output_shape = {num_output,height_out,width_out};
 	dim3 blockDim(32,32);
-	dim3 gridDim(output,(height_out+31)/32,(width_out+31)/32);
+	dim3 gridDim(num_outputs,(height_out+31)/32,(width_out+31)/32);
 	convolution<<<gridDim, blockDim>>>(add_X, add_W, add_B, add_output, input_dim, num_outputs, height_out, width_out, height_in, width_in,  kernal, stride);
 
 	cudaDeviceSynchronize();
 
         cudaMemcpy(output, add_output, total_size_output * sizeof(float), cudaMemcpyDeviceToHost);
-	Tensor t_output(ouput_shape);
-	output_shape.from_list(output);
+	std::vector<int> output_shape = {num_outputs,height_out,width_out};
+	Tensor t_output(output_shape);
+	t_output.from_list(output);
 
 	return t_output;
 }
