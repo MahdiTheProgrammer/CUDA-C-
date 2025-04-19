@@ -45,10 +45,19 @@ Tensor Conv2d::forward(Tensor& input){
 
 //	input.add_padding(padding,0);
 
+//	int height_out = (height_in - kernal + 2 * padding) / stride + 1;
+//	int width_out = (width_in - kernal + 2 * padding) / stride + 1;
 
 	float* add_X = input.device_address();
 	float* add_W = weights.device_address();
 	float* add_B = bias.device_address();
+
+//        const std::vector<float> shape = input.get_data();
+//        std::cout<<"\n";
+//         for (float num : shape) {
+//                std::cout << num << " ";
+//         }
+//	std::cout<<"\n";
 
 	int total_size_output = num_outputs * height_out * width_out;
         float* add_output;
@@ -56,7 +65,7 @@ Tensor Conv2d::forward(Tensor& input){
         cudaMalloc((void**)&add_output,total_size_output * sizeof(float));
 
 	dim3 blockDim(32,32);
-	dim3 gridDim(num_outputs,(height_out+31)/32,(width_out+31)/32);
+	dim3 gridDim((width_out+31)/32,(height_out+31)/32,num_outputs);
 	convolution<<<gridDim, blockDim>>>(add_X, add_W, add_B, add_output, input_dim, num_outputs, height_out, width_out, height_in, width_in,  kernal, stride);
 
 	cudaDeviceSynchronize();

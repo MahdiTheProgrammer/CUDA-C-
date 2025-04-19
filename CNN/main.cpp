@@ -30,15 +30,16 @@ int  main(){
 //        	std::cout << num << " ";
 //   	 }
 	Model model;
-	model.add(new Conv2d(1,1,1,1,1));
+	model.add(new Conv2d(1,1,2,1,3));
 	t_B = model.forward(t_A);
 	t_B.print();
 //	t_A.add_padding(1,0.0f);
 //	t_A.print();
-//	const std::vector<float>& d = t_A.get_data();
-//	for (float val : d){
-//		std::cout<<val<< " ";
-//	}
+	std::cout<<"\n";
+	const std::vector<float>& d = t_B.get_data();
+	for (float val : d){
+		std::cout<<val<< " ";
+	}
 //	std::cout<<"\n";
 //	t_B.print();
 //	std::cout<<"\n";
