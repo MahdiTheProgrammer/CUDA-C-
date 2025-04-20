@@ -2,7 +2,7 @@
 #include "layer.h"
 
 Tensor Dense::forward(Tensor& input) {
-
+    return Tensor({1,2,3});
 }
 
 Dense::Dense(int input_size, int output_size)
@@ -24,11 +24,11 @@ Tensor ReLU::forward(Tensor& input){
 }
 
 Tensor flatten::forward(Tensor& input){
-
+    return Tensor({ 1,2,3 });
 }
 
 Tensor MaxPool2d::forward(Tensor& input){
-
+    return Tensor({ 1,2,3 });
 }
 
 MaxPool2d::MaxPool2d(int width, int height){
