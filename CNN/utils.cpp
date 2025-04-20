@@ -176,6 +176,8 @@ void Tensor::add_padding(int padding, float value){
         }
 
 	if (on_gpu){
+		cudaFree(device_data);
+		cudaMalloc(&device_data, total_size * sizeof(float));
 		cudaMemcpy(device_data, host_data.data(), total_size * sizeof(float), cudaMemcpyHostToDevice);
 	}
 }
@@ -189,6 +191,7 @@ const std::vector<int>& Tensor::get_strides() const{
 }
 
 float* Tensor::device_address() const{
+	cudaMemcpy(device_data, host_data.data(), total_size * sizeof(float), cudaMemcpyHostToDevice);
 	return device_data;
 }
 

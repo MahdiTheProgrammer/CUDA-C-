@@ -6,11 +6,11 @@
 
 
 int  main(){
-	std::vector<int> shape_A = {1,6,6};
-	std::vector<int> shape_B = {1,8,8};
-	std::vector<int> shape_C = {1,6,6};
+	std::vector<int> shape_A = {6,6};
+//	std::vector<int> shape_B = {1,8,8};
+	std::vector<int> shape_C = {6,6};
 	Tensor t_A(shape_A);
-	Tensor t_B(shape_B);
+//	Tensor t_B(shape_B);
 	Tensor t_C(shape_C);
 //	std::vector<float> i_a = {1.0f, 2.0f, 3.0f, 4.0f};;
 //	t_A.to_device();
@@ -32,8 +32,8 @@ int  main(){
 //   	 }
 	Model model;
 	model.add(new Conv2d(1,1,1,1,1));
-	t_B = model.forward(t_A);
-	t_B.print();
+	Tensor output = model.forward(t_A);
+	output.print();
 //	t_A.add_padding(1,0.0f);
 //	t_A.print();
 //	std::cout<<"\n";

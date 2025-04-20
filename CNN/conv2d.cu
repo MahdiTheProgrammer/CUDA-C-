@@ -49,6 +49,7 @@ Tensor Conv2d::forward(Tensor& input){
 		width_out++;
 	}
 
+//	std::cout<<width_out<< ", "<<height_out<<"\n";
 //	input.add_padding(padding,0);
 
 //	int height_out = (height_in - kernal + 2 * padding) / stride + 1;
