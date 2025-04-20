@@ -31,7 +31,7 @@ int  main(){
 //        	std::cout << num << " ";
 //   	 }
 	Model model;
-	model.add(new Conv2d(1,10,2,2,1));
+	model.add(new Conv2d(1,1,1,1,1));
 	Tensor output = model.forward(t_A);
 	output.print();
 //	t_A.add_padding(1,0.0f);
