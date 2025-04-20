@@ -215,3 +215,12 @@ const std::vector<float>& Tensor::get_data(){
 
 	return host_data;
 }
+void Tensor::print_2D(){
+	if (on_gpu){
+		cudaMemcpy(host_data.data(), device_data, total_size * sizeof(float), cudaMemcpyDeviceToHost);
+	}
+	for (float num : host_data){
+		std::cout<<num<<", ";
+	}
+	std::cout<<"\n";
+}

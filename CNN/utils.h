@@ -15,6 +15,7 @@ public:
 	void arrange(const float& start,const float& step);
 	void rand();
 	void clone();
+	void print_2D();
 	void from_list(float* list);
 	void add_padding(int padding, float value);
 	int flatten_index(const std::vector<int>& indices) const;

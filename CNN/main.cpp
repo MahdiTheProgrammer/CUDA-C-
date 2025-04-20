@@ -8,38 +8,39 @@
 int  main(){
 	std::vector<int> shape_A = {1,6,6};
 	std::vector<int> shape_B = {1,8,8};
-//	std::vector<int> shape_C = {1,3,2,2};
+	std::vector<int> shape_C = {1,6,6};
 	Tensor t_A(shape_A);
 	Tensor t_B(shape_B);
-//	Tensor t_C(shape_C);
+	Tensor t_C(shape_C);
 //	std::vector<float> i_a = {1.0f, 2.0f, 3.0f, 4.0f};;
-	t_A.to_device();
+//	t_A.to_device();
 //	t_B.to_device();
 	t_A.arrange(1.001,0.001);
+	t_C.arrange(1.001,0.001);
 //	t_B.arrange(0,2);
 //	t_A.from_list(i_a.data());
 //	t_B.from_list(i_b.data());
 	t_A.print();
 	std::cout<<"\n";
-//	t_A.add_padding(1,0);
-//	t_A.print();
-
+	t_C.add_padding(1,0);
+	t_C.print();
+	std::cout<<"\n";
 //    	std::vector<int> shape = t_A.get_shape();
 //	std::cout<<"\n";
 //   	 for (int num : shape) {
 //        	std::cout << num << " ";
 //   	 }
 	Model model;
-	model.add(new Conv2d(1,1,2,1,3));
+	model.add(new Conv2d(1,1,1,1,1));
 	t_B = model.forward(t_A);
 	t_B.print();
 //	t_A.add_padding(1,0.0f);
 //	t_A.print();
-	std::cout<<"\n";
-	const std::vector<float>& d = t_B.get_data();
-	for (float val : d){
-		std::cout<<val<< " ";
-	}
+//	std::cout<<"\n";
+//	const std::vector<float>& d = t_B.get_data();
+//	for (float val : d){
+//		std::cout<<val<< " ";
+//	}
 //	std::cout<<"\n";
 //	t_B.print();
 //	std::cout<<"\n";
