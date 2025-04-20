@@ -15,8 +15,8 @@ int  main(){
 //	std::vector<float> i_a = {1.0f, 2.0f, 3.0f, 4.0f};;
 //	t_A.to_device();
 //	t_B.to_device();
-	t_A.arrange(1.001,0.001);
-	t_C.arrange(1.001,0.001);
+	t_A.arrange(1.001,0.01);
+	t_C.arrange(1.001,0.01);
 //	t_B.arrange(0,2);
 //	t_A.from_list(i_a.data());
 //	t_B.from_list(i_b.data());
