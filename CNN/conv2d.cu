@@ -56,7 +56,10 @@ Tensor Conv2d::forward(Tensor& input){
 	dim3 blockDim(32,32);
 	dim3 gridDim((width_out+31)/32,(height_out+31)/32,num_outputs*batch_size);
 	convolution<<<gridDim, blockDim>>>(batch_size, add_X, add_W, add_B, add_output, input_dim, num_outputs, height_out, width_out, height_in, width_in,  kernal, stride);
-
+	cudaError_t err = cudaGetLastError();
+	if (err != cudaSuccess) {
+    		std::cerr << "CUDA kernel failed: " << cudaGetErrorString(err) << std::endl;
+	}
 	cudaDeviceSynchronize();
 
         cudaMemcpy(output, add_output, total_size_output * sizeof(float), cudaMemcpyDeviceToHost);
