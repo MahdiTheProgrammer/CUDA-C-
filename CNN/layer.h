@@ -37,8 +37,11 @@ public:
 };
 
 class MaxPool2d: public Layer{
+private:
+	int kernel_size;
+	int stride;
 public:
-	MaxPool2d(int width, int height);
+	MaxPool2d(int kernal_size, int stride);
 	Tensor forward(Tensor& input) override;
 };
 

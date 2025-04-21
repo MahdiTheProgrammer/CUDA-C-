@@ -27,11 +27,11 @@ Tensor flatten::forward(Tensor& input){
     return Tensor({ 1,2,3 });
 }
 
-Tensor MaxPool2d::forward(Tensor& input){
-    return Tensor({ 1,2,3 });
-}
 
-MaxPool2d::MaxPool2d(int width, int height){
+MaxPool2d::MaxPool2d(int kernel_size, int stride)
+   :kernel_size(kernel_size),
+    stride(stride)
+{
 
 }
 
