@@ -19,7 +19,7 @@ __global__ void convolution(int batch_size, float* input,float*weights, float* b
 			}
 		}
 
-		output[(which_batch * output_dim * width_out * height_out)+(which_kernal * height_out * width_out) + (row * width_out) + col] = i + bias[z];
+		output[(which_batch * output_dim * width_out * height_out)+(which_kernal * height_out * width_out) + (row * width_out) + col] = i + bias[which_kernal];
 	}
 }
 
