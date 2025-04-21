@@ -38,11 +38,12 @@ public:
 
 class MaxPool2d: public Layer{
 private:
-	int kernel_size;
+	int kernel;
 	int stride;
 public:
-	MaxPool2d(int kernal_size, int stride);
+	MaxPool2d(int kernel, int stride);
 	Tensor forward(Tensor& input) override;
+	virtual ~MaxPool2d() {}
 };
 
 class flatten: public Layer{

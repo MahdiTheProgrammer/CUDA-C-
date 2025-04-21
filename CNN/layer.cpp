@@ -28,8 +28,8 @@ Tensor flatten::forward(Tensor& input){
 }
 
 
-MaxPool2d::MaxPool2d(int kernel_size, int stride)
-   :kernel_size(kernel_size),
+MaxPool2d::MaxPool2d(int kernel, int stride)
+   :kernel(kernel),
     stride(stride)
 {
 
