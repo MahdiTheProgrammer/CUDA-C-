@@ -28,17 +28,8 @@ Tensor Conv2d::forward(Tensor& input){
 	int input_dim = input_shape[input_shape.size()-3];
 	int height_in = input_shape[input_shape.size()-2];
 	int width_in = input_shape[input_shape.size()-1];
-//	std::cout<<input_dim<<" "<<height_in<<" "<<width_in<<"\n";
 
-//	input.print_2D();
-
-
-// input is padded properly shape is fine and print 2d reinforces that
-
-//	int padded_height = input_shape[input_shape.size()-2]+ (padding * 2);
 	int height_out = 0;
-
-//	int padded_width = input_shape[input_shape.size()-1] + (padding * 2);
 	int width_out = 0;
 
 	for(int f1=kernal-1; f1<height_in; f1+=stride){
@@ -48,12 +39,6 @@ Tensor Conv2d::forward(Tensor& input){
 	for(int f1=kernal-1; f1<width_in; f1+=stride){
 		width_out++;
 	}
-
-//	std::cout<<width_out<< ", "<<height_out<<"\n";
-//	input.add_padding(padding,0);
-
-//	int height_out = (height_in - kernal + 2 * padding) / stride + 1;
-//	int width_out = (width_in - kernal + 2 * padding) / stride + 1;
 
 	float* add_X = input.device_address();
 	float* add_W = weights.device_address();
