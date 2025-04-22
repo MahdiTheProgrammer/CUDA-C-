@@ -1,12 +1,22 @@
 //Defines the full CNN model t
 #include "layer.h"
+#include "utils.h"
 
-Linear::Linear(int input_size, int output_size)
-	: weights({input_size,output_size}),
-	  bias({output_size})
+Linear::Linear(int in_features, int out_features)
+	: weights({in_features,out_features}),
+	  bias({output_size}),
+	  in_features = in_features,
+	  out_features = out_features
 {
 	weights.ones();
 	bias.ones();
+}
+
+Tensor Linear::forward(Tensor& input){
+	input.to_device();
+	x = Tensor::matmul(input,weights);
+
+	return output
 }
 
 Tensor ReLU::forward(Tensor& input){

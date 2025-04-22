@@ -1,6 +1,6 @@
 // linear implemenation
 #include <iostream>
-#include "layer.h"
+//#include "layer.h"
 
 
 
@@ -12,7 +12,9 @@ __global__ void linear(){
 
 Tensor Linear::forward(Tensor& input){
 
+	input.to_device();
 
 
+	linear<<<>>>>
 
 }

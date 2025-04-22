@@ -26,6 +26,8 @@ class Linear: public Layer {
 private:
 	Tensor weights;
 	Tensor bias;
+	int in_features;
+	int out_features;
 public:
 	Linear(int in_features, int out_featuers);
 	Tensor forward(Tensor& input) override;
