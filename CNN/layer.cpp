@@ -6,10 +6,11 @@ Tensor Linear::forward(Tensor& input) {
 }
 
 Linear::Linear(int input_size, int output_size)
-	: weights({1,2}),
-	  bias({1,2})
+	: weights({input_size,output_size}),
+	  bias({output_size})
 {
-
+	weights.ones();
+	bias.ones();
 }
 
 Tensor ReLU::forward(Tensor& input){
