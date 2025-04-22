@@ -228,6 +228,11 @@ void Tensor::print_2D(){
 	std::cout<<"\n";
 }
 void Tensor::reshape(std::vector<int> new_shape){
-	
+	shape=new_shape;
+        total_size = 1;
+        for(int f1=shape.size()-1; f1>=0;f1--){
+                strides[f1]=total_size;
+                total_size*=shape[f1];
+        }
 
 }
