@@ -66,6 +66,7 @@ Tensor Conv2d::forward(Tensor& input){
 	std::vector<int> output_shape = {batch_size, num_outputs,height_out,width_out};
 	Tensor t_output(output_shape);
 	t_output.from_list(output);
+	cudaFree(add_output);
 
 	return t_output;
 }

@@ -62,12 +62,11 @@ Tensor MaxPool2d::forward(Tensor& input){
                 std::cerr << "CUDA kernel failed: " << cudaGetErrorString(err) << std::endl;
         }
         cudaDeviceSynchronize();
-
         cudaMemcpy(output, add_output, total_size_output * sizeof(float), cudaMemcpyDeviceToHost);
         std::vector<int> output_shape = {batch_size,input_dim,height_out,width_out};
         Tensor t_output(output_shape);
         t_output.from_list(output);
-
+	cudaFree(add_output);
         return t_output;
 
 
