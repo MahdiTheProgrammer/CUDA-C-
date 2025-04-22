@@ -227,3 +227,7 @@ void Tensor::print_2D(){
 	}
 	std::cout<<"\n";
 }
+void Tensor::reshape(std::vector<int> new_shape){
+	
+
+}
