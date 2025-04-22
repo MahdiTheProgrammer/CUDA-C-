@@ -22,12 +22,12 @@ public:
 	Tensor forward(Tensor& input) override;
 };
 
-class Dense: public Layer {
+class Linear: public Layer {
 private:
 	Tensor weights;
 	Tensor bias;
 public:
-	Dense(int in_features, int out_featuers);
+	Linear(int in_features, int out_featuers);
 	Tensor forward(Tensor& input) override;
 };
 
