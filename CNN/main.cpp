@@ -7,7 +7,7 @@
 
 int  main(){
 //	std::vector<int> shape_A = {2,2,6,6};
-	std::vector<int> shape_B = {1,8,8};
+	std::vector<int> shape_B = {1,1,8,8};
 //	std::vector<int> shape_C = {2,2,6,6};
 //	Tensor t_A(shape_A);
 	Tensor t_B(shape_B);
@@ -30,23 +30,23 @@ int  main(){
 //   	 for (int num : shape) {
 //        	std::cout << num << " ";
 //   	 }
-//	Model model;
-//	model.add(new MaxPool2d(2,2));
-//	Tensor output = model.forward(t_A);
-//	output.print();
+	Model model;
+	model.add(new flatten());
+	Tensor output = model.forward(t_B);
+	output.print();
 
 //	t_A.add_padding(1,0.0f);
 //	t_A.print();
 //	std::cout<<"\n";
-//	const std::vector<float>& d = t_B.get_data();
-//	for (float val : d){
-//		std::cout<<val<< " ";
-//	}
+	const std::vector<int> shape = output.get_shape();
+	for (float val : shape){
+		std::cout<<val<< " ";
+	}
 //	std::cout<<"\n";
-	t_B.print();
-	std::cout<<"\n";
-	t_B.reshape({4,4,4});
-	t_B.print();
+//	t_B.print();
+//	std::cout<<"\n";
+//	t_B.reshape({4,4,4});
+//s	t_B.print();
 //	std::cout<<"\n";
 //	float* i_c = Tensor::matmul(t_A, t_B);
 //	t_C.from_list(i_c);

@@ -24,7 +24,15 @@ Tensor ReLU::forward(Tensor& input){
 }
 
 Tensor flatten::forward(Tensor& input){
-    return Tensor({ 1,2,3 });
+
+	std::vector<int> input_shape = input.get_shape();
+	int features = 1;
+	for(int f=input_shape.size()-1;f>0;f--){
+		features*=input_shape[f];
+	}
+	Tensor output = input;
+	output.reshape({input_shape[0],features});
+	return output;
 }
 
 
