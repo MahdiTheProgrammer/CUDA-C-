@@ -1,10 +1,6 @@
 //Defines the full CNN model t
 #include "layer.h"
 
-Tensor Linear::forward(Tensor& input) {
-    return Tensor({1,2,3});
-}
-
 Linear::Linear(int input_size, int output_size)
 	: weights({input_size,output_size}),
 	  bias({output_size})
