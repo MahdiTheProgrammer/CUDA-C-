@@ -20,10 +20,15 @@ __global__ void matrixmultiplication(float *t_A, float *t_B, float *c, int batch
 	}
 }
 
-__global__ void matvecadd(float *t_A, float *t_b, int len_vector){
+__global__ void matvecadd(float *t_A, float *t_b,float *output, int len_vector, int total_rows){
 
-	row
+	int row = blockIdx.x * blockDim.x + threadIdx.x;
 
+	if (row < total_rows) {
+		for (int j = 0; j < len_vector; ++j) {
+			output[row * len_vector + j] = t_A[row * len_vector + j] +  t_b[j];
+    		}
+	}
 }
 
 float* Tensor::matmul(const Tensor& t_A, const Tensor& t_B){
@@ -71,10 +76,13 @@ float* MatrixVectorAddition(const Tensor& t_A, const Tensor& t_b){
 
 	cudaMalloc((void**)&add_C,total_size_C * sizeof(float));
 
-	dim3 blockDim(32,32);
-	dim3 gridDim(((dim*shape_A[shape_A.size()-2)+31)/32);
+	threads_per_block = 32*32;
+	int num_rows = dim*shape_A[shape_A.size()-2]
 
-	matvecadd<<<gridDim, blockDim>>>(add_A, add_b, len_vector);
+	dim3 blockDim(threads_per_block);
+	dim3 gridDim((num_rows+threads_per_block-1)/threads_per_block);
+
+	matvecadd<<<gridDim, blockDim>>>(add_A, add_b, add_C, len_vector, num_rows);
 	cudaDeviceSynchronize();
 
 	cudaMemcpy(h_C, add_C, total_size_C * sizeof(float), cudaMemcpyDeviceToHost);
