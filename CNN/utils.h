@@ -28,6 +28,7 @@ public:
 	float& operator[](const std::vector<int>& indices);
 	static float* matmul(const Tensor& t_A, const Tensor& t_B);
 	bool is_on_gpu() const;
+	static float* MatrixVectorAddition(const Tensor& t_A, const Tensor& t_B);
 
 private:
 	std::vector<int> shape;

@@ -20,7 +20,11 @@ __global__ void matrixmultiplication(float *t_A, float *t_B, float *c, int batch
 	}
 }
 
+__global__ void matvecadd(float *t_A, float *t_b){
 
+
+
+}
 
 float* Tensor::matmul(const Tensor& t_A, const Tensor& t_B){
         std::vector<int> shape_A = t_A.get_shape();
@@ -46,3 +50,19 @@ float* Tensor::matmul(const Tensor& t_A, const Tensor& t_B){
 }
 
 
+float* MatrixVectorAddition(const Tensor& t_A, const Tensor& t_b){
+
+	float* add_A = t_A.device_address();
+	float* add_b = t_b.device_address();
+
+	std::vector<int> shape_A = t_A.get_shape();
+
+	int num_rows = 1;
+
+	for(int i=0; i<shape_A.size()-2;i++){
+		num_rows*=shape_A[i];
+	}
+
+
+
+}
