@@ -4,9 +4,9 @@
 
 Linear::Linear(int in_features, int out_features)
 	: weights({in_features,out_features}),
-	  bias({output_size}),
-	  in_features = in_features,
-	  out_features = out_features
+	  bias({out_features}),
+	  in_features(in_features),
+	  out_features(out_features)
 {
 	weights.ones();
 	bias.ones();
@@ -14,9 +14,9 @@ Linear::Linear(int in_features, int out_features)
 
 Tensor Linear::forward(Tensor& input){
 	input.to_device();
-	x = Tensor::matmul(input,weights);
-
-	return output
+	Tensor output= Tensor::matmul(input,weights);
+	output = Tensor::MatrixVectorAddition(output,bias);
+	return output;
 }
 
 Tensor ReLU::forward(Tensor& input){

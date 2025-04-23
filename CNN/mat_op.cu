@@ -55,7 +55,7 @@ float* Tensor::matmul(const Tensor& t_A, const Tensor& t_B){
 }
 
 
-float* MatrixVectorAddition(const Tensor& t_A, const Tensor& t_b){
+Tensor MatrixVectorAddition(const Tensor& t_A, const Tensor& t_b){
 
 	float* add_A = t_A.device_address();
 	float* add_b = t_b.device_address();
@@ -63,7 +63,7 @@ float* MatrixVectorAddition(const Tensor& t_A, const Tensor& t_b){
 	std::vector<int> shape_A = t_A.get_shape();
 	std::vector<int> shape_b = t_b.get_shape();
 
-	int len_vector = shape_b[shape_b.size()-1]
+	int len_vector = shape_b[shape_b.size()-1];
 
 	int dim = 1;
 	for(int i=0; i<shape_A.size()-2;i++){
@@ -76,8 +76,8 @@ float* MatrixVectorAddition(const Tensor& t_A, const Tensor& t_b){
 
 	cudaMalloc((void**)&add_C,total_size_C * sizeof(float));
 
-	threads_per_block = 32*32;
-	int num_rows = dim*shape_A[shape_A.size()-2]
+	int threads_per_block = 32*32;
+	int num_rows = dim*shape_A[shape_A.size()-2];
 
 	dim3 blockDim(threads_per_block);
 	dim3 gridDim((num_rows+threads_per_block-1)/threads_per_block);
