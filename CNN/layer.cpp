@@ -17,7 +17,7 @@ Tensor Linear::forward(Tensor& input){
 	Tensor output = Tensor::matmul(input,weights);
 	output = Tensor::MatrixVectorAddition(output,bias);
 	return output;
-}
+ }
 
 Tensor ReLU::forward(Tensor& input){
 	const std::vector<float>& in = input.get_data();
