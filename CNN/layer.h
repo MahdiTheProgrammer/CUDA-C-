@@ -29,7 +29,7 @@ private:
 	int in_features;
 	int out_features;
 public:
-	Linear(int in_features, int out_featuers);
+	Linear(int in_features, int out_features);
 	Tensor forward(Tensor& input) override;
 };
 
