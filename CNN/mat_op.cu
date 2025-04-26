@@ -35,10 +35,16 @@ Tensor Tensor::matmul(const Tensor& t_A, const Tensor& t_B){
         std::vector<int> shape_A = t_A.get_shape();
         std::vector<int> shape_B = t_B.get_shape();
         int d=1;
+	std::vector<int> shape_output;
         std::vector<int> shape = t_A.get_shape();
         for(int f1=0; f1<shape.size()-2;f1++){
                 d*=shape_A[f1];
+		shape_output.push_back(shape_A[f1]);
         }
+
+	shape_output.push_back(shape_A[shape_A.size()-2]);
+	shape_output.push_back(shape_B[shape_B.size()-1]);
+
         float* add_A = t_A.device_address();
         float* add_B = t_B.device_address();
         int total_size_C = d * shape_B[shape_B.size()-1] * shape_A[shape_A.size()-2];
@@ -52,14 +58,14 @@ Tensor Tensor::matmul(const Tensor& t_A, const Tensor& t_B){
         cudaMemcpy(h_C, add_C, total_size_C * sizeof(float), cudaMemcpyDeviceToHost);
 	cudaFree(add_C);
 
-	Tensor output({d,shape_A[shape_A.size()-2],shape_B[shape_B.size()-1]});
+	Tensor output(shape_output);
 	output.from_list(h_C);
 
         return output;
 }
 
 
-Tensor MatrixVectorAddition(const Tensor& t_A, const Tensor& t_b){
+Tensor Tensor::MatrixVectorAddition(const Tensor& t_A, const Tensor& t_b){
 
 	float* add_A = t_A.device_address();
 	float* add_b = t_b.device_address();

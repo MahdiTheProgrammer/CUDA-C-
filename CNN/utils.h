@@ -6,6 +6,8 @@ class Tensor {
 public:
 	Tensor(const std::vector<int>& shape_);
 	~Tensor();
+        Tensor(const Tensor& other);
+        Tensor& operator=(const Tensor& other);
 	void to_device();
 	void to_host();
 	void print();
@@ -26,9 +28,9 @@ public:
 	const std::vector<float>& get_data();
 	float* device_address() const;
 	float& operator[](const std::vector<int>& indices);
-	Tensor matmul(const Tensor& t_A, const Tensor& t_B);
+	static Tensor matmul(const Tensor& t_A, const Tensor& t_B);
 	bool is_on_gpu() const;
-	Tensor MatrixVectorAddition(const Tensor& t_A, const Tensor& t_B);
+	static Tensor MatrixVectorAddition(const Tensor& t_A, const Tensor& t_B);
 
 private:
 	std::vector<int> shape;

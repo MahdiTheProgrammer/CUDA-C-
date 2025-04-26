@@ -7,8 +7,8 @@
 
 int  main(){
 //	std::vector<int> shape_A = {2,2,6,6};
-	std::vector<int> shape_B = {2,4,8};
-	std::vector<int> shape_C = {1,8};
+	std::vector<int> shape_B = {2,3,4,5};
+	std::vector<int> shape_C = {5,8};
 //	Tensor t_A(shape_A);
 	Tensor t_B(shape_B);
 	Tensor t_C(shape_C);
@@ -20,16 +20,17 @@ int  main(){
 //	t_B.arrange(0,2);
 //	t_A.from_list(i_a.data());
 //	t_B.from_list(i_b.data());
-	t_B.print();
+	Tensor out = Tensor::matmul(t_B,t_C);
+	out.print();
 	std::cout<<"\n";
 //	t_C.add_padding(1,0);
-	t_C.print();
-	std::cout<<"\n";
-//    	std::vector<int> shape = t_A.get_shape();
+//	t_C.print();
 //	std::cout<<"\n";
-//   	 for (int num : shape) {
-//        	std::cout << num << " ";
-//   	 }
+    	std::vector<int> shape = out.get_shape();
+	std::cout<<"\n";
+   	 for (int num : shape) {
+        	std::cout << num << " ";
+   	 }
 //	Model model;
 //	model.add(new flatten());
 //	Tensor output = model.forward(t_B);

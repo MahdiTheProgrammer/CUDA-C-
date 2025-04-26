@@ -21,6 +21,44 @@ Tensor::~Tensor(){
         }
 }
 
+Tensor::Tensor(const Tensor& other)
+    : shape(other.shape),
+      strides(other.strides),
+      host_data(other.host_data),
+      on_gpu(other.on_gpu),
+      total_size(other.total_size)
+{
+    if (other.device_data) {
+        cudaMalloc(&device_data, total_size * sizeof(float));
+        cudaMemcpy(device_data, other.device_data, total_size * sizeof(float), cudaMemcpyDeviceToDevice);
+    } else {
+        device_data = nullptr;
+    }
+}
+
+Tensor& Tensor::operator=(const Tensor& other) {
+    if (this == &other)
+        return *this;
+
+    if (device_data) {
+        cudaFree(device_data);
+        device_data = nullptr;
+    }
+
+    shape = other.shape;
+    strides = other.strides;
+    host_data = other.host_data;
+    on_gpu = other.on_gpu;
+    total_size = other.total_size;
+
+    if (other.device_data) {
+        cudaMalloc(&device_data, total_size * sizeof(float));
+        cudaMemcpy(device_data, other.device_data, total_size * sizeof(float), cudaMemcpyDeviceToDevice);
+    }
+
+    return *this;
+}
+
 void Tensor::to_device(){
 	if(device_data==nullptr){
 		cudaMalloc(&device_data, total_size * sizeof(float));

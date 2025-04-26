@@ -14,7 +14,7 @@ Linear::Linear(int in_features, int out_features)
 
 Tensor Linear::forward(Tensor& input){
 	input.to_device();
-	Tensor output= Tensor::matmul(input,weights);
+	Tensor output = Tensor::matmul(input,weights);
 	output = Tensor::MatrixVectorAddition(output,bias);
 	return output;
 }
