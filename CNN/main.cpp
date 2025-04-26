@@ -8,7 +8,7 @@
 int  main(){
 //	std::vector<int> shape_A = {2,2,6,6};
 	std::vector<int> shape_B = {2,3,4,5};
-	std::vector<int> shape_C = {5,8};
+	std::vector<int> shape_C = {2,3,5,8};
 //	Tensor t_A(shape_A);
 	Tensor t_B(shape_B);
 	Tensor t_C(shape_C);
