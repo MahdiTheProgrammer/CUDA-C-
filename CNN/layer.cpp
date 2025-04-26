@@ -1,6 +1,7 @@
 //Defines the full CNN model t
 #include "layer.h"
 #include "utils.h"
+#include <iostream>
 
 Linear::Linear(int in_features, int out_features)
 	: weights({in_features,out_features}),
@@ -15,6 +16,8 @@ Linear::Linear(int in_features, int out_features)
 Tensor Linear::forward(Tensor& input){
 	input.to_device();
 	Tensor output = Tensor::matmul(input,weights);
+	output.print();
+	std::cout<<"\n";
 	output = Tensor::MatrixVectorAddition(output,bias);
 	return output;
  }

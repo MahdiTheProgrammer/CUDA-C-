@@ -7,8 +7,8 @@
 
 int  main(){
 //	std::vector<int> shape_A = {2,2,6,6};
-	std::vector<int> shape_B = {2,3,4,5};
-	std::vector<int> shape_C = {2,3,5,8};
+	std::vector<int> shape_B = {1,2,10};
+	std::vector<int> shape_C = {10,5};
 //	Tensor t_A(shape_A);
 	Tensor t_B(shape_B);
 	Tensor t_C(shape_C);
@@ -23,27 +23,27 @@ int  main(){
 	Tensor out = Tensor::matmul(t_B,t_C);
 	out.print();
 	std::cout<<"\n";
-//	t_C.add_padding(1,0);
-//	t_C.print();
-//	std::cout<<"\n";
-    	std::vector<int> shape = out.get_shape();
+//	t_B.add_padding(1,0);
+	t_B.print();
 	std::cout<<"\n";
-   	 for (int num : shape) {
-        	std::cout << num << " ";
-   	 }
-//	Model model;
-//	model.add(new flatten());
-//	Tensor output = model.forward(t_B);
-//	output.print();
+//    	std::vector<int> shape = out.get_shape();
+//	std::cout<<"\n";
+//   	 for (int num : shape) {
+//        	std::cout << num << " ";
+//   	 }
+	Model model;
+	model.add(new Linear(10,5));
+	Tensor output = model.forward(t_B);
+	output.print();
 
 //	t_A.add_padding(1,0.0f);
 //	t_A.print();
 //	std::cout<<"\n";
-//	const std::vector<int> shape = output.get_shape();
-//	for (float val : shape){
-//		std::cout<<val<< " ";
-//	}
-//	std::cout<<"\n";
+	const std::vector<int> shape = output.get_shape();
+	for (float val : shape){
+		std::cout<<val<< " ";
+	}
+	std::cout<<"\n";
 //	t_B.print();
 //	std::cout<<"\n";
 //	t_B.reshape({4,4,4});
