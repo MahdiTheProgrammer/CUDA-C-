@@ -13,8 +13,8 @@ int  main(){
 	Tensor t_B(shape_B);
 	Tensor t_C(shape_C);
 //	std::vector<float> i_a = {1.0f, 2.0f, 3.0f, 4.0f};;
-//	t_A.to_device();
-//	t_B.to_device();
+	t_C.to_device();
+	t_B.to_device();
 	t_B.arrange(1.0,0.0);
 	t_C.arrange(1.0,0.0);
 //	t_B.arrange(0,2);
