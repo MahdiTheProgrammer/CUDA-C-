@@ -31,7 +31,7 @@ __global__ void matvecadd(float *t_A, float *t_b,float *output, int len_vector, 
 	}
 }
 
-float* Tensor::matmul(const Tensor& t_A, const Tensor& t_B){
+Tensor Tensor::matmul(const Tensor& t_A, const Tensor& t_B){
         std::vector<int> shape_A = t_A.get_shape();
         std::vector<int> shape_B = t_B.get_shape();
         int d=1;
@@ -51,7 +51,11 @@ float* Tensor::matmul(const Tensor& t_A, const Tensor& t_B){
         cudaDeviceSynchronize();
         cudaMemcpy(h_C, add_C, total_size_C * sizeof(float), cudaMemcpyDeviceToHost);
 	cudaFree(add_C);
-        return h_C;
+
+	Tensor output({d,shape_A[shape_A.size()-2],shape_B[shape_B.size()-1]});
+	output.from_list(h_C);
+
+        return output;
 }
 
 
@@ -88,5 +92,8 @@ Tensor MatrixVectorAddition(const Tensor& t_A, const Tensor& t_b){
 	cudaMemcpy(h_C, add_C, total_size_C * sizeof(float), cudaMemcpyDeviceToHost);
 	cudaFree(add_C);
 
-	return h_C;
+	Tensor output(shape_A);
+	output.from_list(h_C);
+
+	return output;
 }
