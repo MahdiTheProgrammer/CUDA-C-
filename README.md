@@ -1,13 +1,14 @@
 # I am builing a Deep learning framework from scratch with CUDA/C++
 
 ## Features
+All of the following features support batch input which alongside with gpu acceleration, provides a descent speed.
   ### Layers:
   - Conv2d
   - Linear
   - ReLU
   - MaxPool2d
   - Flatten
-  - Softmax (soon)
+  - Softmax
 
 ## Build Instructions
 
