@@ -15,7 +15,7 @@ All of the following features support batch input which alongside with gpu accel
 ## Usage
 
 ## TODO
-- Transfomer and attention mechanism
+- add RNN, LSTM, transformer support
 - Autograd
 
 
