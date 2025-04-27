@@ -1,4 +1,4 @@
-# I am builing a Deep learning framework from scratch with CUDA/C++
+# A Deep learning framework from scratch with CUDA/C++
 
 ## Features
 All of the following features support batch input which alongside with gpu acceleration, provides a descent speed.
@@ -10,13 +10,19 @@ All of the following features support batch input which alongside with gpu accel
   - Flatten
   - Softmax
 
+  ### TODO
+  - add RNN, LSTM, transformer support
+  - Autograd
+  - Optimization and loss functions
+## Dataset
+For testing and demonstrating the functionality of the library I will use the CIFAR-10 dataset (binary version). The dataset is available in:
+```
+cs.toronto.edu
+```
+<a href="https://www.cs.toronto.edu/~kriz/cifar.html" target="_blank">Click here for the dataset</a>
 ## Build Instructions
 
 ## Usage
-
-## TODO
-- add RNN, LSTM, transformer support
-- Autograd
 
 
 
