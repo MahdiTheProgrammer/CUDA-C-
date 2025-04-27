@@ -11,10 +11,30 @@ All of the following features support batch input which alongside with gpu accel
   - Softmax
     
   ### Loss Functions (Working on it!):
+  
   - MSE
-  - CrossEntropy
+  
+    $$
+    \text{MSE} = \frac{1}{N}\sum_{i=1}^N (y_i - \hat{y}_i)^2
+    $$
+  
   - BCE
+
+    $$
+    \text{BCE} = -\frac{1}{N}\sum_{i=1}^N \left( y_i \log(\hat{y}_i) + (1 - y_i) \log(1 - \hat{y}_i) \right)
+    $$
+  
   - Huber
+
+  
+    $$
+    L_\delta(a) =
+    \begin{cases}
+      \frac{1}{2}a^2 & \text{if} \ |a| \leq \delta \\
+      \delta(|a| - \frac{1}{2}\delta) & \text{otherwise}
+    \end{cases}
+    $$
+
 
   ### Optimization Functions (Soon will be added):
   - SGD
