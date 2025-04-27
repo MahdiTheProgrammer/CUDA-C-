@@ -26,21 +26,35 @@ Tensor Linear::forward(Tensor& input){
  }
 
 Tensor softmax::forward(Tensor& input){
-
 	float base = std::exp(1.0);
+
 	const std::vector<float>& in = input.get_data();
+	const std::vector<int> input_shape = input.get_shape();
+	batch_size = input_shape[0];
+	features = input_shape[1];
+
 	std::vector<float> output_vector(in.size());
-        float max_input = *std::max_element(in.begin(), in.end());
-	float sum = 0.0;
 
-    	for (size_t i = 0; i < in.size(); ++i) {
-       		output_vector[i] = std::pow(base, in[i] - max_input);
-        	sum += output_vector[i];
-        }
+	for (int b=0; b<batch_size;++b){
 
-        for (size_t i = 0; i < in.size(); ++i) {
-        	output_vector[i] /= sum;
+		float max_input = in[b*features];
+		for (size_t i = b*features; i < (b+1)*features; ++i) {
+    			if (in[i] > max_input) {
+        			max_input = in[i];
+    			}
+		}
+		float sum = 0.0;
+
+    		for (size_t i = 0; i < in.size(); ++i) {
+       			output_vector[i] = std::pow(base, in[i] - max_input);
+        		sum += output_vector[i];
+        	}
+
+        	for (size_t i = 0; i < in.size(); ++i) {
+        		output_vector[i] /= sum;
+		}
 	}
+
 	Tensor t_output(input.get_shape());
 	t_output.from_list(output_vector.data());
 	return t_output;
