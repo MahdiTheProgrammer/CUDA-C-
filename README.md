@@ -1,7 +1,7 @@
 # A Deep learning framework from scratch with CUDA/C++
 
 ## Features
-All of the following features support batch input which alongside with gpu acceleration, provides a descent speed.
+All of the following features support batch input which alongside with gpu acceleration, provides a descent performance.
   ### Layers:
   - Conv2d
   - Linear
@@ -9,12 +9,23 @@ All of the following features support batch input which alongside with gpu accel
   - MaxPool2d
   - Flatten
   - Softmax
+    
+  ### Loss Functions (Working on it!):
+  - MSE
+  - CrossEntropy
+  - BCE
+  - Huber
+
+  ### Optimization Functions (Soon will be added):
+  - SGD
+  - Adam
+  - RMSProp
 
   ### TODO
   - add RNN, LSTM, transformer support
   - Autograd
-  - Optimization and loss functions
-## Dataset
+
+## Test Dataset
 For testing and demonstrating the functionality of the library I will use the CIFAR-10 dataset (binary version). The dataset is available in:
 ```
 cs.toronto.edu
@@ -24,7 +35,3 @@ cs.toronto.edu
 
 ## Usage
 
-
-
-## Update
-At the moment all the CNN layers work properly with their forwardpass. I haven't build a model yet but the model should work perfectly fine. I will start working on backprop as soon as I get everything ready.
