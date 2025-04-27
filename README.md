@@ -99,6 +99,47 @@ cs.toronto.edu
 ```
 <a href="https://www.cs.toronto.edu/~kriz/cifar.html" target="_blank">Click here for the dataset</a>
 ## Build Instructions
+Note: In order to run this project an Nvidia GPU is required. Furthermore CudaToolkit and nvcc must be installed on the machine. <br>
+You can build your own model in 
+```
+LIB/main.cpp
+```
+Before running you have to check your gpu architecture from the following list:
 
-## Usage
+- Kepler (GTX 600, GTX 700 series)  
+  `-arch=sm_30` or `-arch=sm_35`
+
+- Maxwell (GTX 750, GTX 900 series)  
+  `-arch=sm_50` or `-arch=sm_52`
+
+- Pascal (GTX 10xx series, like 1080 Ti)  
+  `-arch=sm_60` or `-arch=sm_61`
+
+- Volta (Tesla V100)  
+  `-arch=sm_70`
+
+- Turing (RTX 20xx series, like 2080 Ti)  
+  `-arch=sm_75`
+
+- Ampere (RTX 30xx series, like 3080, 3090)  
+  `-arch=sm_80`  
+  (`-arch=sm_86` for newer models like RTX 3050)
+
+- Ada Lovelace (RTX 40xx series, like 4080, 4090)  
+  `-arch=sm_89` (for some 4090)  
+  `-arch=sm_90` (for newest architectures)
+
+- Hopper (H100)  
+  `-arch=sm_90`
+  
+and replace your gpus -arch with the one in
+```
+LIB/Makefile
+```
+
+Finally you can run it using the following command
+```
+make
+```
+
 
