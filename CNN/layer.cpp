@@ -2,6 +2,8 @@
 #include "layer.h"
 #include "utils.h"
 #include <iostream>
+#include <cmath>
+#include <algorithm>
 
 Linear::Linear(int in_features, int out_features)
 	: weights({in_features,out_features}),
@@ -23,16 +25,40 @@ Tensor Linear::forward(Tensor& input){
 	return output;
  }
 
-Tensor ReLU::forward(Tensor& input){
+Tensor softmax::forward(Tensor& input){
+
+	float base = std::exp(1.0);
 	const std::vector<float>& in = input.get_data();
-	std::vector<float> output_vector;
-	for (int f1=0; f1<in.size();f1++){
-		output_vector.push_back(in[f1] > 0 ? in[f1] : 0);
+	std::vector<float> output_vector(in.size());
+        float max_input = *std::max_element(in.begin(), in.end());
+	float sum = 0.0;
+
+    	for (size_t i = 0; i < in.size(); ++i) {
+       		output_vector[i] = std::pow(base, in[i] - max_input);
+        	sum += output_vector[i];
+        }
+
+        for (size_t i = 0; i < in.size(); ++i) {
+        	output_vector[i] /= sum;
 	}
 	Tensor t_output(input.get_shape());
 	t_output.from_list(output_vector.data());
 	return t_output;
 }
+
+
+Tensor ReLU::forward(Tensor& input){
+        const std::vector<float>& in = input.get_data();
+        std::vector<float> output_vector;
+
+	for (int f1=0; f1<in.size();f1++){
+                output_vector.push_back(in[f1] > 0 ? in[f1] : 0);
+        }
+        Tensor t_output(input.get_shape());
+        t_output.from_list(output_vector.data());
+        return t_output;
+}
+
 
 Tensor flatten::forward(Tensor& input){
 
