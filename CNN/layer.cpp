@@ -43,14 +43,14 @@ Tensor softmax::forward(Tensor& input){
         			max_input = in[i];
     			}
 		}
-		float sum = 0.0;
 
-    		for (size_t i = 0; i < in.size(); ++i) {
+		float sum = 0.0;
+    		for (int i = b*features; i < (b+1)*features; ++i) {
        			output_vector[i] = std::pow(base, in[i] - max_input);
         		sum += output_vector[i];
         	}
 
-        	for (size_t i = 0; i < in.size(); ++i) {
+        	for (int i = b*features; i < (b+1)*features; ++i) {
         		output_vector[i] /= sum;
 		}
 	}
