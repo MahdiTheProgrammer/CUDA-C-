@@ -15,7 +15,7 @@ int  main(){
 //	std::vector<float> i_a = {1.0f, 2.0f, 3.0f, 4.0f};;
 //	t_C.to_device();
 	t_B.to_device();
-	t_B.arrange(1.0,0.0);
+	t_B.arrange(1.0,10.0);
 //	t_C.arrange(1.0,0.0);
 //	t_B.arrange(0,2);
 //	t_A.from_list(i_a.data());
@@ -32,18 +32,18 @@ int  main(){
 //        	std::cout << num << " ";
 //   	 }
 	Model model;
-	model.add(new Linear(10,5));
+	model.add(new softmax());
 	Tensor output = model.forward(t_B);
 	output.print();
 
 //	t_A.add_padding(1,0.0f);
 //	t_A.print();
 //	std::cout<<"\n";
-	const std::vector<int> shape = output.get_shape();
-	for (float val : shape){
-		std::cout<<val<< " ";
-	}
-	std::cout<<"\n";
+//	const std::vector<int> shape = output.get_shape();
+//	for (float val : shape){
+//		std::cout<<val<< " ";
+//	}
+//	std::cout<<"\n";
 //	t_B.print();
 //	std::cout<<"\n";
 //	t_B.reshape({4,4,4});

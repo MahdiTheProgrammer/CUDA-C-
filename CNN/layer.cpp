@@ -30,8 +30,8 @@ Tensor softmax::forward(Tensor& input){
 
 	const std::vector<float>& in = input.get_data();
 	const std::vector<int> input_shape = input.get_shape();
-	batch_size = input_shape[0];
-	features = input_shape[1];
+	int batch_size = input_shape[0];
+	int features = input_shape[1];
 
 	std::vector<float> output_vector(in.size());
 
