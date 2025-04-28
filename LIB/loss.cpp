@@ -1,7 +1,7 @@
 // the code for the loss functions will be here
 #include "loss.h"
 #include <iostream>
-
+#include <cmath>
 
 float Loss:BCE(Tensor outputs, Tensor labels){
 
@@ -24,13 +24,16 @@ float Loss:MSE(Tensor outputs, Tensor labels){
 	for(int b=0; b<batch_size;++b){
 		float l = 0.0f;
 		for(int f=0; f<features; ++f){
-
+			l+=std::pow((y[b*features+f] - out[b*features+f]),2)
 		}
-
+		l/=features;
 		loss_vector[b] = l;
 	}
 
-        return 0;
+	Tensor t_loss({batch_size});
+	t_loss.from_list(loss_vector);
+
+        return t_loss;
 }
 
 float Loss::HuberLoss(Tensor outputs, Tensor labels){
