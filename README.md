@@ -71,7 +71,7 @@ $$
 \text{BCE} = -\frac{1}{N}\sum_{i=1}^N \left( y_i \log(\hat{y}_i) + (1 - y_i) \log(1 - \hat{y}_i) \right)
 $$
 
-#### Huber
+#### Huber (Soon)
 
 $$
 L_\delta(a) =
@@ -99,7 +99,7 @@ cs.toronto.edu
 ```
 <a href="https://www.cs.toronto.edu/~kriz/cifar.html" target="_blank">Click here for the dataset</a>
 ## Build Instructions
-Note: In order to run this project an Nvidia GPU is required. Furthermore CudaToolkit and nvcc must be installed on the machine. <br>
+Note: In order to run this project an Nvidia GPU is required. Furthermore CudaToolkit and nvcc must be installed on the machine. If you try to run it at this moment, you might encounter some errors or issues since I am still developing this project and some parts are not ready. <br>
 You can build your own model in 
 ```
 LIB/main.cpp
