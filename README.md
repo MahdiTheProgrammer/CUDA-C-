@@ -142,4 +142,4 @@ Finally you can run it using the following command
 make
 ```
 
-
+### Update: Learning about backprop in CNNs and autograd
